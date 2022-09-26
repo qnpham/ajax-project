@@ -1,0 +1,48 @@
+body {
+  background-color: #212121;
+  font-family: "Roboto Slab", serif;
+}
+
+h2 {
+  font-family: "RocknRoll One", sans-serif;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+}
+
+input {
+  margin-top: 0.75rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  width: 80%;
+  height: 1.55rem;
+}
+
+i {
+  position: absolute;
+  top: 1rem;
+  right: 2.75rem;
+}
+
+form {
+  width: 100%;
+}
+
+main > .container > .row {
+  margin-top: 35vh;
+}
+
+.home {
+  justify-content: center;
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
