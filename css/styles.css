@@ -18,7 +18,7 @@ h2 {
 
 input {
   margin-top: 0.75rem;
-  border-radius: 5px;
+  border-radius: 7px;
   width: 90%;
   height: 1.55rem;
   border: none;
@@ -36,10 +36,6 @@ form {
   width: 100%;
 }
 
-main > .container > .row {
-  margin-top: 35vh;
-}
-
 .home {
   justify-content: center;
   width: 100%;
@@ -54,4 +50,35 @@ main > .container > .row {
   background: none;
   border: none;
   padding: 0;
+}
+
+.column-one-third {
+  width: calc(100% / 3);
+}
+
+header {
+  background-color: #23262a;
+}
+
+header h2 {
+  font-size: 1.25rem;
+}
+
+header .row {
+  justify-content: space-between;
+  align-items: center;
+}
+
+header input {
+  position: relative;
+  width: 90%;
+  bottom: 0.3rem;
+}
+
+header button {
+  bottom: 0.3rem;
+}
+
+main > .container > .row {
+  margin-top: 35vh;
 }
