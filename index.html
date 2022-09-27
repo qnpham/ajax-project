@@ -15,10 +15,10 @@
 </head>
 <body>
   <header>
-    <div class="container">
+    <div class="container hidde" data-view="nav">
       <div class="row">
         <div class="column-one-fourth">
-          <h2>MyMovieList</h2>
+          <h2 id="nav-header">MyMovieList</h2>
         </div>
         <div class="column-one-half">
           <form action="">
@@ -35,12 +35,12 @@
     </div>
   </header>
   <main>
-    <div class="container">
-      <div class="row hidden">
+    <div class="container hidden" data-view="home-page">
+      <div class="row">
         <div class="column-full">
           <div class="row home">
             <h2>MyMovieList</h2>
-            <form action="">
+            <form action="" id="home-form">
               <div class="search row">
                 <input type="text" placeholder="Movie title" required>
                 <button type="submit" class="fa-btn">
@@ -51,6 +51,37 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="container" data-view="search-result">
+      <div class="row">
+        <div class="column-one-third text-center">
+          <img src="https://m.media-amazon.com/images/M/MV5BMDU2ZWJlMjktMTRhMy00ZTA5LWEzNDgtYmNmZTEwZTViZWJkXkEyXkFqcGdeQXVyNDQ2OTk4MzI@._V1_SX300.jpg" alt="">
+        </div>
+        <div class="column-one-third text-center">
+          <img src="https://m.media-amazon.com/images/M/MV5BMWM5ZDcxMTYtNTEyNS00MDRkLWI3YTItNThmMGExMWY4NDIwXkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_SX300.jpg" alt="">
+        </div>
+        <div class="column-one-third text-center">
+          <img src="https://m.media-amazon.com/images/M/MV5BMTgxOTY4Mjc0MF5BMl5BanBnXkFtZTcwNTA4MDQyMw@@._V1_SX300.jpg" alt="">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column-one-third text-center">
+          <img
+            src="https://m.media-amazon.com/images/M/MV5BMDU2ZWJlMjktMTRhMy00ZTA5LWEzNDgtYmNmZTEwZTViZWJkXkEyXkFqcGdeQXVyNDQ2OTk4MzI@._V1_SX300.jpg"
+            alt="">
+        </div>
+        <div class="column-one-third text-center">
+          <img
+            src="https://m.media-amazon.com/images/M/MV5BMWM5ZDcxMTYtNTEyNS00MDRkLWI3YTItNThmMGExMWY4NDIwXkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_SX300.jpg"
+            alt="">
+        </div>
+        <div class="column-one-third text-center">
+          <img src="https://m.media-amazon.com/images/M/MV5BMTgxOTY4Mjc0MF5BMl5BanBnXkFtZTcwNTA4MDQyMw@@._V1_SX300.jpg"
+            alt="">
+        </div>
+      </div>
+
     </div>
   </main>
   <script src="js/data.js"></script>

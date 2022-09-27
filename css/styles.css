@@ -1,6 +1,7 @@
 body {
   background-color: #212121;
   font-family: "Roboto Slab", serif;
+  width: 100%;
 }
 
 h2 {
@@ -19,7 +20,7 @@ h2 {
 input {
   margin-top: 0.75rem;
   border-radius: 7px;
-  width: 90%;
+  width: 85%;
   height: 1.55rem;
   border: none;
 }
@@ -28,12 +29,20 @@ i {
   color: white;
   position: relative;
   top: 0.45rem;
-  left: 0.5rem;
   font-size: 1.1rem;
 }
 
 form {
   width: 100%;
+}
+
+img {
+  margin-top: 2rem;
+  width: 14rem;
+  height: 21rem;
+  border-radius: 5px;
+  border: 1px solid white;
+  object-fit: fill;
 }
 
 .home {
@@ -43,33 +52,30 @@ form {
 
 .text-center {
   text-align: center;
+  margin: auto;
 }
 
 .fa-btn {
   position: relative;
   background: none;
   border: none;
-  padding: 0;
+  padding-left: 0.5rem;
 }
 
-.column-one-third {
-  width: calc(100% / 3);
-}
-
-.column-one-half {
-  width: 50%;
-}
-
-.column-one-fourth {
-  width: 25%;
+#nav-header:hover {
+  cursor: pointer;
 }
 
 header {
   background-color: #23262a;
 }
 
+header .search {
+  justify-content: center;
+}
+
 header h2 {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 header .row {
@@ -78,15 +84,14 @@ header .row {
 }
 
 header input {
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
-  width: 90%;
+  width: 75%;
   bottom: 0.3rem;
 }
 
 header button {
+  margin: auto;
   bottom: 0.3rem;
-}
-
-main > .container > .row {
-  margin-top: 35vh;
 }
