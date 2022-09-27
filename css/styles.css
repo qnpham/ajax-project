@@ -56,6 +56,14 @@ form {
   width: calc(100% / 3);
 }
 
+.column-one-half {
+  width: 50%;
+}
+
+.column-one-fourth {
+  width: 25%;
+}
+
 header {
   background-color: #23262a;
 }
