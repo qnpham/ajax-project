@@ -6,6 +6,7 @@ var $main = document.querySelector('main');
 var $navForm = document.querySelector('#nav-form');
 var $body = document.querySelector('body');
 var $moviePage = document.querySelector('[data-view="movie-page"]');
+var $close = document.querySelector('.fa-xmark');
 $navHeader.addEventListener('click', function (event) {
   var $container = document.querySelectorAll('.container');
   var $searchResult = document.querySelector('[data-view="search-result"]');
@@ -92,6 +93,12 @@ $body.addEventListener('click', function (event) {
       }
     }
   }
+});
+
+$close.addEventListener('click', function () {
+  var $searchResult = document.querySelector('[data-view="search-result"]');
+  $moviePage.classList.add('hidden');
+  $searchResult.classList.remove('hidden');
 });
 
 function getDetails(id) {
