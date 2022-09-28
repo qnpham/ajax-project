@@ -3,6 +3,7 @@ var $homePage = document.querySelector('[data-view="home-page"]');
 var $nav = document.querySelector('[data-view="nav"]');
 var $navHeader = document.querySelector('#nav-header');
 var $searchResult = document.querySelector('[data-view="search-result"]');
+var $main = document.querySelector('main');
 
 $navHeader.addEventListener('click', function (event) {
   $homePage.classList.remove('hidden');
@@ -28,6 +29,7 @@ function getApi(keyword) {
     for (var i = 0; i < xhr.response.Search.length; i++) {
       data.searchResult.push(xhr.response.Search[i]);
     }
+    $main.appendChild(createImage());
   });
   xhr.send();
 }
