@@ -99,6 +99,31 @@ function getDetails(id) {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     data.viewing.result = xhr.response;
+    setMoviePage(data.viewing.result);
   });
   xhr.send();
+}
+
+function setMoviePage(movie) {
+  var $movieTitle = document.querySelector('#movie-title');
+  var $movieDirector = document.querySelector('#movie-director');
+  var $rated = document.querySelector('#rated');
+  var $score = document.querySelector('#score');
+  var $genre = document.querySelector('#genre');
+  var $actors = document.querySelector('#actors');
+  var $plot = document.querySelector('#plot');
+
+  $movieTitle.textContent = movie.Title;
+  $movieDirector.textContent = movie.Director;
+  $rated.textContent = movie.Rated;
+  $genre.textContent = movie.Genre;
+  $actors.textContent = movie.Actors;
+  $plot.textContent = movie.Plot;
+
+  for (var i = 0; i < movie.Ratings.length; i++) {
+    if (movie.Ratings[i].Source === 'Internet Movie Database') {
+      $score.textContent = movie.Ratings[i].Value;
+    }
+  }
+
 }
