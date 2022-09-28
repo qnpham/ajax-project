@@ -84,6 +84,10 @@ function createImage() {
 }
 $body.addEventListener('click', function (event) {
   if (event.target.matches('img')) {
-    alert('works!');
+    for (var i = 0; i < data.searchResult.length; i++) {
+      if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
+        // console.log(data.searchResult[i]);
+      }
+    }
   }
 });
