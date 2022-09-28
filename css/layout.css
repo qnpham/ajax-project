@@ -1,0 +1,30 @@
+.hidden {
+  display: none !important;
+}
+
+.container {
+  padding: 0.5rem 0;
+  max-width: 100%;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column-full {
+  width: 100%;
+}
+
+.column-one-third {
+  flex-basis: calc(100% / 3);
+}
+
+.column-one-half {
+  width: 50%;
+}
+
+.column-one-fourth {
+  width: 25%;
+}

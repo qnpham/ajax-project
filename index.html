@@ -8,11 +8,50 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://kit.fontawesome.com/914c274f09.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600&family=Roboto:wght@100;300;400&family=RocknRoll+One&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
+    <div class="container hidden" data-view="nav">
+      <div class="row">
+        <div class="column-one-fourth">
+          <h2 id="nav-header">MyMovieList</h2>
+        </div>
+        <div class="column-one-half">
+          <form action="" id="nav-form">
+            <div class="search row">
+              <input type="text" placeholder="Movie title" id="nav-input" required>
+              <button type="submit" class="fa-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="column-one-fourth"></div>
+      </div>
+    </div>
   </header>
   <main>
+    <div class="container" data-view="home-page">
+      <div class="row">
+        <div class="column-full">
+          <div class="row home">
+            <h2>MyMovieList</h2>
+            <form action="" id="home-form">
+              <div class="search row">
+                <input type="text" placeholder="Movie title" required id="home-input">
+                <button type="submit" class="fa-btn">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
