@@ -4,7 +4,7 @@ var $nav = document.querySelector('[data-view="nav"]');
 var $navHeader = document.querySelector('#nav-header');
 var $main = document.querySelector('main');
 var $navForm = document.querySelector('#nav-form');
-
+var $body = document.querySelector('body');
 $navHeader.addEventListener('click', function (event) {
   var $container = document.querySelectorAll('.container');
   var $searchResult = document.querySelector('[data-view="search-result"]');
@@ -82,4 +82,8 @@ function createImage() {
   return container;
 
 }
-createImage();
+$body.addEventListener('click', function (event) {
+  if (event.target.matches('img')) {
+    alert('works!');
+  }
+});
