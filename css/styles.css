@@ -70,12 +70,8 @@ header {
   background-color: #23262a;
 }
 
-header .search {
-  justify-content: center;
-}
-
 header h2 {
-  font-size: 1rem;
+  font-size: 0.85rem;
 }
 
 header .row {
@@ -85,13 +81,20 @@ header .row {
 
 header input {
   margin-left: auto;
-  margin-right: auto;
   position: relative;
-  width: 75%;
+  width: 80%;
   bottom: 0.3rem;
 }
 
+header i {
+  font-size: 1rem;
+}
+
 header button {
-  margin: auto;
+  margin-right: auto;
   bottom: 0.3rem;
+}
+
+[data-view="home-page"] {
+  margin-top: 35vh;
 }

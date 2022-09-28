@@ -2,34 +2,49 @@ var $homeForm = document.querySelector('#home-form');
 var $homePage = document.querySelector('[data-view="home-page"]');
 var $nav = document.querySelector('[data-view="nav"]');
 var $navHeader = document.querySelector('#nav-header');
-var $searchResult = document.querySelector('[data-view="search-result"]');
 var $main = document.querySelector('main');
 var $navForm = document.querySelector('#nav-form');
 
 $navHeader.addEventListener('click', function (event) {
+  var $container = document.querySelectorAll('.container');
+  var $searchResult = document.querySelector('[data-view="search-result"]');
+  if ($searchResult) {
+    $searchResult.remove();
+    data.searchResult = [];
+  }
+  for (var i = 0; i < $container.length; i++) {
+    $container[i].classList.add('hidden');
+  }
   $homePage.classList.remove('hidden');
-  $nav.classList.add('hidden');
-  $searchResult.classList.add('hidden');
+  $homeForm.reset();
+  $navForm.reset();
 });
 
 $navForm.addEventListener('submit', function (event) {
-  var $navInput = document.querySelector('#nav-input');
-  var keyword = $navInput.value;
   event.preventDefault();
-  getApi(keyword);
+  var $searchResult = document.querySelector('[data-view="search-result"]');
+  var $navInput = document.querySelector('#nav-input');
+  data.search = $navInput.value;
+  if ($searchResult) {
+    $searchResult.remove();
+  }
+  getApi(data.search);
 });
 
 $homeForm.addEventListener('submit', function (event) {
+  var $navInput = document.querySelector('#nav-input');
   var $homeInput = document.querySelector('#home-input');
-  var keyword = $homeInput.value;
+  data.search = $homeInput.value;
   event.preventDefault();
   $homePage.classList.add('hidden');
   $nav.classList.remove('hidden');
-  getApi(keyword);
+  $navInput.value = data.search;
+  getApi(data.search);
 
 });
 
 function getApi(keyword) {
+  data.searchResult = [];
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://omdbapi.com/?apikey=e9abc53b&s=' + keyword);
   xhr.responseType = 'json';

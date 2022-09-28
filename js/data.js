@@ -1,5 +1,6 @@
 /* exported data */
 var data = {
   searchResult: [],
-  viewing: null
+  viewing: null,
+  search: ''
 };
