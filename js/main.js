@@ -86,7 +86,7 @@ $body.addEventListener('click', function (event) {
   if (event.target.matches('img')) {
     for (var i = 0; i < data.searchResult.length; i++) {
       if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
-        // console.log(data.searchResult[i]);
+        data.viewing = (data.searchResult[i]);
       }
     }
   }
