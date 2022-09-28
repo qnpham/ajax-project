@@ -31,3 +31,30 @@ function getApi(keyword) {
   });
   xhr.send();
 }
+
+function createImage() {
+  var container = document.createElement('div');
+  container.setAttribute('class', 'container');
+  container.setAttribute('data-view', 'search-result');
+
+  var row = document.createElement('div');
+  row.setAttribute('class', 'row');
+  container.appendChild(row);
+
+  for (var i = 0; i < data.searchResult.length; i++) {
+    row.appendChild(createColumn(i));
+  }
+
+  function createColumn(index) {
+    var column = document.createElement('div');
+    column.setAttribute('class', 'column-one-third text-center');
+    var img = document.createElement('img');
+    img.setAttribute('src', data.searchResult[index].Poster);
+    column.appendChild(img);
+    return column;
+  }
+  container.appendChild(row);
+  return container;
+
+}
+createImage();
