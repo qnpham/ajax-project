@@ -86,8 +86,19 @@ $body.addEventListener('click', function (event) {
   if (event.target.matches('img')) {
     for (var i = 0; i < data.searchResult.length; i++) {
       if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
-        data.viewing = (data.searchResult[i]);
+        data.viewing.search = (data.searchResult[i]);
+        getDetails(data.viewing.search.imdbID);
       }
     }
   }
 });
+
+function getDetails(id) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://omdbapi.com/?apikey=e9abc53b&i=' + id);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    data.viewing.result = xhr.response;
+  });
+  xhr.send();
+}
