@@ -1,9 +1,10 @@
-var $form = document.querySelector('#home-form');
+var $homeForm = document.querySelector('#home-form');
 var $homePage = document.querySelector('[data-view="home-page"]');
 var $nav = document.querySelector('[data-view="nav"]');
 var $navHeader = document.querySelector('#nav-header');
 var $searchResult = document.querySelector('[data-view="search-result"]');
 var $main = document.querySelector('main');
+var $navForm = document.querySelector('#nav-form');
 
 $navHeader.addEventListener('click', function (event) {
   $homePage.classList.remove('hidden');
@@ -11,7 +12,14 @@ $navHeader.addEventListener('click', function (event) {
   $searchResult.classList.add('hidden');
 });
 
-$form.addEventListener('submit', function (event) {
+$navForm.addEventListener('submit', function (event) {
+  var $navInput = document.querySelector('#nav-input');
+  var keyword = $navInput.value;
+  event.preventDefault();
+  getApi(keyword);
+});
+
+$homeForm.addEventListener('submit', function (event) {
   var $homeInput = document.querySelector('#home-input');
   var keyword = $homeInput.value;
   event.preventDefault();
