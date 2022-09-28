@@ -2,6 +2,14 @@ body {
   background-color: #212121;
   font-family: "Roboto Slab", serif;
   width: 100%;
+  color: white;
+}
+
+h1 {
+  font-family: "RocknRoll One", sans-serif;
+  font-size: 1.25rem;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 h2 {
@@ -9,6 +17,17 @@ h2 {
   font-weight: 400;
   color: white;
   text-align: center;
+}
+
+h4 {
+  font-size: 0.65rem;
+  margin-top: 0.25rem;
+  font-weight: 300;
+}
+
+p {
+  font-size: 0.75rem;
+  font-weight: 300;
 }
 
 .search {
@@ -24,13 +43,6 @@ input {
   border: none;
 }
 
-i {
-  color: white;
-  position: relative;
-  top: 0.45rem;
-  font-size: 1.1rem;
-}
-
 form {
   width: 100%;
 }
@@ -42,6 +54,18 @@ img {
   border-radius: 5px;
   border: 1px solid white;
   object-fit: fill;
+}
+
+span {
+  font-size: 0.75rem;
+  font-weight: 300;
+}
+
+.fa-magnifying-glass {
+  color: white;
+  position: relative;
+  top: 0.45rem;
+  font-size: 1.1rem;
 }
 
 .home {
@@ -71,6 +95,7 @@ header {
 
 header h2 {
   font-size: 0.85rem;
+  text-align: left;
 }
 
 header .row {
@@ -85,15 +110,128 @@ header input {
   bottom: 0.3rem;
 }
 
-header i {
-  font-size: 1rem;
-}
-
 header button {
   margin-right: auto;
   bottom: 0.3rem;
 }
 
+header .fa-magnifying-glass {
+  font-size: 1rem;
+}
+
 [data-view="home-page"] {
   margin-top: 35vh;
+}
+
+.fa-xmark {
+  color: white;
+  text-align: center;
+  padding-left: 0.5rem;
+}
+
+.movie-page-img {
+  width: 16rem;
+  height: auto;
+}
+
+.page-text-container {
+  margin: auto;
+  width: 16rem;
+  display: inline-block;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.text {
+  padding-bottom: 0.25rem;
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+    display: inline;
+  }
+
+  h4 {
+    padding-left: 1rem;
+    font-size: 1rem;
+    display: inline;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  span,
+  .label {
+    font-size: 1rem;
+  }
+
+  .movie-page-img {
+    width: 23rem;
+  }
+
+  .page-text-container {
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  .bottom-content {
+    margin-top: 1rem;
+  }
+
+  .text {
+    margin-top: 0.05rem;
+  }
+
+  .simple-header {
+    font-size: 1rem;
+  }
+
+  .fa-xmark {
+    font-size: 1.25rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h4 {
+    padding-left: 1rem;
+    font-size: 1.25rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+
+  .text {
+    margin-top: 0.25rem;
+  }
+
+  .movie-page-img {
+    width: 25rem;
+  }
+
+  span,
+  .label {
+    font-size: 1.25rem;
+  }
+
+  .simple-header {
+    font-size: 1.25rem;
+  }
+
+  .fa-xmark {
+    font-size: 1.5rem;
+  }
 }

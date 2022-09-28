@@ -10,8 +10,10 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600&family=Roboto:wght@300;400&family=RocknRoll+One&display=swap"
+    rel="stylesheet">
   <script src="https://kit.fontawesome.com/914c274f09.js" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600&family=Roboto:wght@100;300;400&family=RocknRoll+One&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -33,9 +35,14 @@
         <div class="column-one-fourth"></div>
       </div>
     </div>
+    <div class="container" data-view="simple-nav">
+      <div class="column-one-fourth">
+        <h2 class="simple-header">MyMovieList</h2>
+      </div>
+    </div>
   </header>
   <main>
-    <div class="container" data-view="home-page">
+    <div class="container hidden" data-view="home-page">
       <div class="row">
         <div class="column-full">
           <div class="row home">
@@ -48,6 +55,57 @@
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container" data-view="movie-page">
+      <div class="row">
+        <div class="column-one-fourth">
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column-one-fourth margin-auto">
+          <div class="row">
+            <div class="column-full text-center">
+              <img src="https://m.media-amazon.com/images/M/MV5BMDU2ZWJlMjktMTRhMy00ZTA5LWEzNDgtYmNmZTEwZTViZWJkXkEyXkFqcGdeQXVyNDQ2OTk4MzI@._V1_SX300.jpg" alt="" class="movie-page-img">
+            </div>
+          </div>
+        </div>
+        <div class="column-three-fourths margin-auto">
+          <div class="page-text-container">
+            <div class="row">
+              <div class="column-full">
+                <h1>Toy Story (1995)</h1>
+                <h4>Directed by John Laseter</h4>
+              </div>
+            </div>
+            <div class="bottom-content">
+              <div class="row">
+                <div class="column-full">
+                  <div class="text">
+                    <span class="label">Rated:</span>
+                    <span>G</span>
+                  </div>
+                  <div class="text">
+                    <span class="label">IMDB:</span>
+                    <span>8.3/10</span>
+                  </div>
+                  <div class="text">
+                    <span class="label">Genre:</span>
+                    <span>Animation, Adventure, Comedy</span>
+                  </div>
+                  <div class="text">
+                    <span class="label">Starring:</span>
+                    <span>Tom Hanks, Tim Allen, Don Rickles</span>
+                  </div>
+                  <div class="text">
+                    <p>A cowboy doll is profoundly threatened and jealous when a new spaceman action figure supplants him as top toy in a boy's bedroom.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
