@@ -5,6 +5,7 @@ var $navHeader = document.querySelector('#nav-header');
 var $main = document.querySelector('main');
 var $navForm = document.querySelector('#nav-form');
 var $body = document.querySelector('body');
+var $moviePage = document.querySelector('[data-view="movie-page"]');
 $navHeader.addEventListener('click', function (event) {
   var $container = document.querySelectorAll('.container');
   var $searchResult = document.querySelector('[data-view="search-result"]');
@@ -100,6 +101,7 @@ function getDetails(id) {
   xhr.addEventListener('load', function () {
     data.viewing.result = xhr.response;
     setMoviePage(data.viewing.result);
+    showMoviePage();
   });
   xhr.send();
 }
@@ -112,18 +114,27 @@ function setMoviePage(movie) {
   var $genre = document.querySelector('#genre');
   var $actors = document.querySelector('#actors');
   var $plot = document.querySelector('#plot');
+  var $img = document.querySelector('.movie-page-img');
 
   $movieTitle.textContent = movie.Title;
-  $movieDirector.textContent = movie.Director;
+  $movieDirector.textContent = 'Directed by ' + movie.Director;
   $rated.textContent = movie.Rated;
   $genre.textContent = movie.Genre;
   $actors.textContent = movie.Actors;
   $plot.textContent = movie.Plot;
+  $img.setAttribute('src', movie.Poster);
 
   for (var i = 0; i < movie.Ratings.length; i++) {
     if (movie.Ratings[i].Source === 'Internet Movie Database') {
       $score.textContent = movie.Ratings[i].Value;
     }
   }
+}
 
+function showMoviePage() {
+  var $searchResult = document.querySelector('[data-view="search-result"]');
+  if (data.viewing.result !== null) {
+    $moviePage.classList.remove('hidden');
+    $searchResult.classList.add('hidden');
+  }
 }
