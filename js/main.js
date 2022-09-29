@@ -4,7 +4,9 @@ var $nav = document.querySelector('[data-view="nav"]');
 var $navHeader = document.querySelector('#nav-header');
 var $main = document.querySelector('main');
 var $navForm = document.querySelector('#nav-form');
-
+var $body = document.querySelector('body');
+var $moviePage = document.querySelector('[data-view="movie-page"]');
+var $close = document.querySelector('.fa-xmark');
 $navHeader.addEventListener('click', function (event) {
   var $container = document.querySelectorAll('.container');
   var $searchResult = document.querySelector('[data-view="search-result"]');
@@ -38,6 +40,7 @@ $homeForm.addEventListener('submit', function (event) {
   event.preventDefault();
   $homePage.classList.add('hidden');
   $nav.classList.remove('hidden');
+  $navForm.classList.remove('hidden');
   $navInput.value = data.search;
   getApi(data.search);
 
@@ -82,4 +85,66 @@ function createImage() {
   return container;
 
 }
-createImage();
+$body.addEventListener('click', function (event) {
+  if (event.target.matches('img')) {
+    for (var i = 0; i < data.searchResult.length; i++) {
+      if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
+        data.viewing.search = (data.searchResult[i]);
+        getDetails(data.viewing.search.imdbID);
+      }
+    }
+  }
+});
+
+$close.addEventListener('click', function () {
+  var $searchResult = document.querySelector('[data-view="search-result"]');
+  $moviePage.classList.add('hidden');
+  $navForm.classList.remove('hidden');
+  $searchResult.classList.remove('hidden');
+});
+
+function getDetails(id) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://omdbapi.com/?apikey=e9abc53b&i=' + id);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    data.viewing.result = xhr.response;
+    setMoviePage(data.viewing.result);
+    showMoviePage();
+  });
+  xhr.send();
+}
+
+function setMoviePage(movie) {
+  var $movieTitle = document.querySelector('#movie-title');
+  var $movieDirector = document.querySelector('#movie-director');
+  var $rated = document.querySelector('#rated');
+  var $score = document.querySelector('#score');
+  var $genre = document.querySelector('#genre');
+  var $actors = document.querySelector('#actors');
+  var $plot = document.querySelector('#plot');
+  var $img = document.querySelector('.movie-page-img');
+
+  $movieTitle.textContent = movie.Title;
+  $movieDirector.textContent = 'Directed by ' + movie.Director;
+  $rated.textContent = movie.Rated;
+  $genre.textContent = movie.Genre;
+  $actors.textContent = movie.Actors;
+  $plot.textContent = movie.Plot;
+  $img.setAttribute('src', movie.Poster);
+
+  for (var i = 0; i < movie.Ratings.length; i++) {
+    if (movie.Ratings[i].Source === 'Internet Movie Database') {
+      $score.textContent = movie.Ratings[i].Value;
+    }
+  }
+}
+
+function showMoviePage() {
+  var $searchResult = document.querySelector('[data-view="search-result"]');
+  if (data.viewing.result !== null) {
+    $moviePage.classList.remove('hidden');
+    $navForm.classList.add('hidden');
+    $searchResult.classList.add('hidden');
+  }
+}

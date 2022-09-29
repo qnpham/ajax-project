@@ -3,7 +3,7 @@
 }
 
 .container {
-  padding: 0.5rem 0;
+  padding: 0.5rem 1.5rem;
   max-width: 100%;
   margin: auto;
 }
@@ -22,9 +22,13 @@
 }
 
 .column-one-half {
-  width: 50%;
+  flex-basis: 50%;
 }
 
 .column-one-fourth {
-  width: 25%;
+  flex-basis: 25%;
+}
+
+.column-three-fourths {
+  flex-basis: 75%;
 }
