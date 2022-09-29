@@ -2,5 +2,9 @@
 var data = {
   searchResult: [],
   viewing: { search: null, result: null },
-  search: ''
+  search: '',
+  list: {
+    viewing: false,
+    array: []
+  }
 };
