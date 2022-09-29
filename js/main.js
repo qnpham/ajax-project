@@ -7,6 +7,7 @@ var $navForm = document.querySelector('#nav-form');
 var $body = document.querySelector('body');
 var $moviePage = document.querySelector('[data-view="movie-page"]');
 var $close = document.querySelector('.fa-xmark');
+var $plus = document.querySelector('.fa-plus');
 $navHeader.addEventListener('click', function (event) {
   var $container = document.querySelectorAll('.container');
   var $searchResult = document.querySelector('[data-view="search-result"]');
@@ -148,3 +149,7 @@ function showMoviePage() {
     $searchResult.classList.add('hidden');
   }
 }
+
+$plus.addEventListener('click', function () {
+
+});
