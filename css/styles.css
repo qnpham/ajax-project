@@ -34,7 +34,7 @@ p {
 input {
   margin-top: 0.75rem;
   border-radius: 7px;
-  width: 95%;
+  width: 80%;
   height: 1.55rem;
   border: none;
 }
@@ -167,7 +167,7 @@ header .fa-magnifying-glass {
 }
 
 .btn-container {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   justify-content: center;
   align-items: center;
 }
@@ -187,9 +187,12 @@ header .fa-magnifying-glass {
   height: 1rem;
 }
 
+[data-view="movie-page"] {
+  height: 100vh;
+}
+
 @media only screen and (min-width: 768px) {
   h1 {
-    font-size: 1.25rem;
     display: inline;
   }
 
@@ -221,7 +224,7 @@ header .fa-magnifying-glass {
 
   .middle-detail-content {
     margin-top: 1rem;
-    width: 75%;
+    width: 80%;
   }
 
   .text {
@@ -265,7 +268,7 @@ header .fa-magnifying-glass {
   }
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1200px) {
   h1 {
     font-size: 1.5rem;
   }
@@ -290,6 +293,11 @@ header .fa-magnifying-glass {
 
   .fa-xmark {
     font-size: 1.5rem;
+  }
+
+  .btn-container {
+    margin-top: 5rem;
+    height: 3rem;
   }
 
   .fa-plus {
