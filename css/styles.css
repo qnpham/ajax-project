@@ -13,7 +13,7 @@ h1 {
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 1.25rem;
   font-family: "RocknRoll One", sans-serif;
   font-weight: 400;
   color: white;
@@ -57,8 +57,17 @@ span {
   font-weight: 300;
 }
 
+a {
+  background-color: #23262a;
+  font-family: roboto, sans-serif;
+  padding: 0.5rem 1rem;
+  color: white;
+  text-decoration: none;
+  font-size: 0.75rem;
+}
+
 .search {
-  width: 60%;
+  width: 70%;
   margin: auto;
   justify-content: center;
 }
@@ -87,7 +96,6 @@ span {
 
 .text-center {
   text-align: center;
-  margin: auto;
 }
 
 .fa-btn {
@@ -191,9 +199,23 @@ header .fa-magnifying-glass {
   height: 100vh;
 }
 
+.view-list-btn {
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
 @media only screen and (min-width: 768px) {
+  a {
+    font-size: 0.95rem;
+    padding: 0.65rem 1.5rem;
+  }
+
   h1 {
     display: inline;
+  }
+
+  h2 {
+    font-size: 1.75rem;
   }
 
   h4 {
@@ -265,6 +287,10 @@ header .fa-magnifying-glass {
     font-size: 1rem;
     width: 1.35rem;
     height: 1.35rem;
+  }
+
+  .search {
+    width: 50%;
   }
 }
 
