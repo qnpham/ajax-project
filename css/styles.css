@@ -89,22 +89,26 @@ span {
   cursor: pointer;
 }
 
+.nav-content {
+  justify-content: center;
+}
+
 header {
   background-color: #23262a;
 }
 
 header h2 {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   text-align: left;
 }
 
 header .row {
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
 }
 
 header input {
-  margin-left: auto;
   position: relative;
   width: 80%;
   bottom: 0.3rem;
@@ -155,63 +159,81 @@ header .fa-magnifying-glass {
 
 @media only screen and (min-width: 768px) {
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     display: inline;
   }
 
   h4 {
-    padding-left: 1rem;
-    font-size: 1rem;
+    padding-left: 0.8rem;
+    font-size: 0.75rem;
     display: inline;
   }
 
   p {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
   span,
   .label {
-    font-size: 1rem;
+    font-size: 0.8rem;
+  }
+
+  [data-view="movie-page"] {
+    margin-top: 2rem;
   }
 
   .movie-page-img {
-    width: 23rem;
+    width: 100%;
   }
 
   .page-text-container {
+    padding-left: 1rem;
     margin-top: 2rem;
     width: 100%;
   }
 
-  .bottom-content {
+  .middle-detail-content {
     margin-top: 1rem;
+    width: 100%;
   }
 
   .text {
     margin-top: 0.05rem;
   }
 
-  .simple-header {
-    font-size: 1rem;
-  }
-
   .fa-xmark {
     font-size: 1.25rem;
+  }
+
+  #nav-header {
+    font-size: 1.25rem;
+  }
+
+  .column-one-fourth {
+    width: 25%;
+  }
+
+  .column-three-fourths {
+    width: 75%;
+  }
+
+  .movie-all-text {
+    justify-content: center;
   }
 }
 
 @media only screen and (min-width: 992px) {
   h1 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   h4 {
     padding-left: 1rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   p {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   .text {
@@ -219,16 +241,12 @@ header .fa-magnifying-glass {
   }
 
   .movie-page-img {
-    width: 25rem;
+    width: 80%;
   }
 
   span,
   .label {
-    font-size: 1.25rem;
-  }
-
-  .simple-header {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   .fa-xmark {

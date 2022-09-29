@@ -18,11 +18,11 @@
 <body>
   <header>
     <div class="container hidden" data-view="nav">
-      <div class="row">
+      <div class="row nav-content">
         <div class="column-one-fourth">
           <h2 id="nav-header">MyMovieList</h2>
         </div>
-        <div class="column-one-half">
+        <div class="column-one-half nav-search">
           <form action="" id="nav-form">
             <div class="search row">
               <input type="text" placeholder="Movie title" id="nav-input" required>
@@ -32,12 +32,8 @@
             </div>
           </form>
         </div>
-        <div class="column-one-fourth"></div>
-      </div>
-    </div>
-    <div class="container hidden" data-view="simple-nav">
-      <div class="column-one-fourth">
-        <h2 class="simple-header">MyMovieList</h2>
+        <div class="column-one-fourth">
+        </div>
       </div>
     </div>
   </header>
@@ -65,43 +61,45 @@
           <i class="fa-solid fa-xmark"></i>
         </div>
       </div>
-      <div class="row">
-        <div class="column-one-fourth margin-auto">
-          <div class="row">
-            <div class="column-full text-center">
-              <img src="https://m.media-amazon.com/images/M/MV5BMDU2ZWJlMjktMTRhMy00ZTA5LWEzNDgtYmNmZTEwZTViZWJkXkEyXkFqcGdeQXVyNDQ2OTk4MzI@._V1_SX300.jpg" alt="" class="movie-page-img">
-            </div>
-          </div>
-        </div>
-        <div class="column-three-fourths margin-auto">
-          <div class="page-text-container">
+      <div class="movie-page-content">
+        <div class="row">
+          <div class="column-one-fourth margin-auto">
             <div class="row">
-              <div class="column-full">
-                <h1 id="movie-title">Toy Story (1995)</h1>
-                <h4 id="movie-director">Directed by John Laseter</h4>
+              <div class="column-full text-center">
+                <img src="https://m.media-amazon.com/images/M/MV5BMDU2ZWJlMjktMTRhMy00ZTA5LWEzNDgtYmNmZTEwZTViZWJkXkEyXkFqcGdeQXVyNDQ2OTk4MzI@._V1_SX300.jpg" alt="" class="movie-page-img">
               </div>
             </div>
-            <div class="bottom-content">
-              <div class="row">
+          </div>
+          <div class="column-three-fourths margin-auto row movie-all-text">
+            <div class="page-text-container ">
+              <div class="row ">
                 <div class="column-full">
-                  <div class="text">
-                    <span class="label">Rated:</span>
-                    <span id="rated">G</span>
-                  </div>
-                  <div class="text">
-                    <span class="label">IMDB:</span>
-                    <span id="score">8.3/10</span>
-                  </div>
-                  <div class="text">
-                    <span class="label">Genre:</span>
-                    <span id="genre">Animation, Adventure, Comedy</span>
-                  </div>
-                  <div class="text">
-                    <span class="label">Starring:</span>
-                    <span id="actors">Tom Hanks, Tim Allen, Don Rickles</span>
-                  </div>
-                  <div class="text">
-                    <p id="plot">A cowboy doll is profoundly threatened and jealous when a new spaceman action figure supplants him as top toy in a boy's bedroom.</p>
+                  <h1 id="movie-title">Toy Story (1995)</h1>
+                  <h4 id="movie-director">Directed by John Laseter</h4>
+                </div>
+              </div>
+              <div class="middle-detail-content">
+                <div class="row">
+                  <div class="column-full">
+                    <div class="text">
+                      <span class="label">Rated:</span>
+                      <span id="rated">G</span>
+                    </div>
+                    <div class="text">
+                      <span class="label">IMDB:</span>
+                      <span id="score">8.3/10</span>
+                    </div>
+                    <div class="text">
+                      <span class="label">Genre:</span>
+                      <span id="genre">Animation, Adventure, Comedy</span>
+                    </div>
+                    <div class="text">
+                      <span class="label">Starring:</span>
+                      <span id="actors">Tom Hanks, Tim Allen, Don Rickles</span>
+                    </div>
+                    <div class="text">
+                      <p id="plot">A cowboy doll is profoundly threatened and jealous when a new spaceman action figure supplants him as top toy in a boy's bedroom.</p>
+                    </div>
                   </div>
                 </div>
               </div>

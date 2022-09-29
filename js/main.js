@@ -7,7 +7,6 @@ var $navForm = document.querySelector('#nav-form');
 var $body = document.querySelector('body');
 var $moviePage = document.querySelector('[data-view="movie-page"]');
 var $close = document.querySelector('.fa-xmark');
-var $simpleNav = document.querySelector('[data-view="simple-nav"]');
 $navHeader.addEventListener('click', function (event) {
   var $container = document.querySelectorAll('.container');
   var $searchResult = document.querySelector('[data-view="search-result"]');
@@ -99,8 +98,7 @@ $body.addEventListener('click', function (event) {
 $close.addEventListener('click', function () {
   var $searchResult = document.querySelector('[data-view="search-result"]');
   $moviePage.classList.add('hidden');
-  $nav.classList.remove('hidden');
-  $simpleNav.classList.add('hidden');
+  $navForm.classList.remove('hidden');
   $searchResult.classList.remove('hidden');
 });
 
@@ -145,8 +143,7 @@ function showMoviePage() {
   var $searchResult = document.querySelector('[data-view="search-result"]');
   if (data.viewing.result !== null) {
     $moviePage.classList.remove('hidden');
-    $nav.classList.add('hidden');
-    $simpleNav.classList.remove('hidden');
+    $navForm.classList.add('hidden');
     $searchResult.classList.add('hidden');
   }
 }
