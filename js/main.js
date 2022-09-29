@@ -25,6 +25,7 @@ $navHeader.addEventListener('click', function (event) {
   for (var i = 0; i < $container.length; i++) {
     $container[i].classList.add('hidden');
   }
+  data.pageView = 'home';
   $homePage.classList.remove('hidden');
   $homeForm.reset();
   $navForm.reset();
@@ -51,6 +52,7 @@ $homeForm.addEventListener('submit', function (event) {
   $navForm.classList.remove('hidden');
   $navInput.value = data.search;
   getApi(data.search);
+  data.pageView = 'search';
 
 });
 
@@ -96,11 +98,15 @@ $body.addEventListener('click', function (event) {
   if (event.target.matches('img')) {
     for (var i = 0; i < data.searchResult.length; i++) {
       if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
-        data.viewing.currentlyViewing = (data.searchResult[i]);
+        data.movieView.currentlyViewing = (data.searchResult[i]);
         checkList();
-        getDetails(data.viewing.currentlyViewing.imdbID);
+        getDetails(data.movieView.currentlyViewing.imdbID);
       }
     }
+  }
+
+  if (event.target.getAttribute('id') === 'list-close') {
+    closeList();
   }
 });
 
@@ -118,8 +124,8 @@ function getDetails(id) {
   xhr.open('GET', 'https://omdbapi.com/?apikey=e9abc53b&i=' + id);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    data.viewing.info = xhr.response;
-    setMoviePage(data.viewing.info);
+    data.movieView.info = xhr.response;
+    setMoviePage(data.movieView.info);
     showMoviePage();
   });
   xhr.send();
@@ -158,13 +164,13 @@ function showMoviePage() {
 }
 
 $plus.addEventListener('click', function () {
-  data.list.array.unshift(data.viewing.currentlyViewing);
+  data.list.array.unshift(data.movieView.currentlyViewing);
   checkList();
 });
 
 function checkList() {
   for (var i = 0; i < data.list.array.length; i++) {
-    if (data.viewing.currentlyViewing.imdbID === data.list.array[i].imdbID) {
+    if (data.movieView.currentlyViewing.imdbID === data.list.array[i].imdbID) {
       $plus.classList.add('hidden');
       $check.classList.remove('hidden');
     }
@@ -173,10 +179,13 @@ function checkList() {
 
 function viewList() {
   var $searchResult = document.querySelector('[data-view="search-result"]');
-  $navForm.classList.add('hidden');
   data.list.viewing = true;
-  $searchResult.classList.add('hidden');
+  $navForm.classList.add('hidden');
   $homePage.classList.add('hidden');
+  $nav.classList.remove('hidden');
+  if ($searchResult) {
+    $searchResult.classList.add('hidden');
+  }
   $main.appendChild(createList());
 }
 
@@ -195,6 +204,7 @@ function createList() {
 
   var close = document.createElement('i');
   close.className = 'fa-solid fa-xmark';
+  close.setAttribute('id', 'list-close');
   columnOneFourth.appendChild(close);
 
   var row2 = document.createElement('div');
@@ -215,4 +225,18 @@ function createList() {
   container.appendChild(row);
   container.appendChild(row2);
   return container;
+}
+
+function closeList() {
+  var $listPage = document.querySelector('[data-view="list-page"]');
+  var $searchResult = document.querySelector('[data-view="search-result"]');
+
+  $listPage.remove();
+  if (data.pageView === 'home') {
+    $homePage.classList.remove('hidden');
+    $nav.classList.add('hidden');
+  } else if (data.pageView === 'search') {
+    $navForm.classList.remove('hidden');
+    $searchResult.classList.remove('hidden');
+  }
 }
