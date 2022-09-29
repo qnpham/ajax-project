@@ -96,6 +96,7 @@ a {
 
 .text-center {
   text-align: center;
+  margin: auto;
 }
 
 .fa-btn {
@@ -107,6 +108,10 @@ a {
 }
 
 #nav-header:hover {
+  cursor: pointer;
+}
+
+[data-item="list"]:hover {
   cursor: pointer;
 }
 

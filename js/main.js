@@ -9,6 +9,11 @@ var $moviePage = document.querySelector('[data-view="movie-page"]');
 var $close = document.querySelector('.fa-xmark');
 var $plus = document.querySelector('.fa-plus');
 var $check = document.querySelector('.fa-check');
+var $list = document.querySelector('[data-item="list"]');
+var $listBtn = document.querySelector('[data-item="list-btn"]');
+
+$list.addEventListener('click', viewList);
+$listBtn.addEventListener('click', viewList);
 
 $navHeader.addEventListener('click', function (event) {
   var $container = document.querySelectorAll('.container');
@@ -65,7 +70,7 @@ function getApi(keyword) {
 
 function createImage() {
   var container = document.createElement('div');
-  container.setAttribute('class', 'container');
+  container.setAttribute('class', 'container text-center');
   container.setAttribute('data-view', 'search-result');
 
   var row = document.createElement('div');
@@ -165,4 +170,8 @@ function checkList() {
       $check.classList.remove('hidden');
     }
   }
+}
+
+function viewList() {
+  alert('hi');
 }
