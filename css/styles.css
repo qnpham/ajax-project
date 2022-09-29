@@ -166,6 +166,27 @@ header .fa-magnifying-glass {
   margin: auto;
 }
 
+.btn-container {
+  margin-top: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-plus {
+  font-size: 1.25rem;
+}
+
+.fa-check {
+  padding: 0.01rem;
+  color: black;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 11px;
+  font-size: 0.95rem;
+  width: 1rem;
+  height: 1rem;
+}
+
 @media only screen and (min-width: 768px) {
   h1 {
     font-size: 1.25rem;
@@ -178,13 +199,10 @@ header .fa-magnifying-glass {
     display: inline;
   }
 
-  p {
-    font-size: 0.8rem;
-  }
-
   span,
-  .label {
-    font-size: 0.8rem;
+  .label,
+  p {
+    font-size: 1rem;
   }
 
   [data-view="movie-page"] {
@@ -203,7 +221,7 @@ header .fa-magnifying-glass {
 
   .middle-detail-content {
     margin-top: 1rem;
-    width: 100%;
+    width: 75%;
   }
 
   .text {
@@ -229,6 +247,22 @@ header .fa-magnifying-glass {
   .movie-all-text {
     justify-content: center;
   }
+
+  .btn-container {
+    margin-top: 2rem;
+    justify-content: start;
+  }
+
+  .fa-plus {
+    font-size: 1.5rem;
+  }
+
+  .fa-check {
+    padding: 0.1rem;
+    font-size: 1rem;
+    width: 1.35rem;
+    height: 1.35rem;
+  }
 }
 
 @media only screen and (min-width: 992px) {
@@ -242,23 +276,30 @@ header .fa-magnifying-glass {
   }
 
   p {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 
   .text {
     margin-top: 0.25rem;
   }
 
-  .movie-page-img {
-    width: 80%;
-  }
-
   span,
   .label {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 
   .fa-xmark {
     font-size: 1.5rem;
+  }
+
+  .fa-plus {
+    font-size: 1.75rem;
+  }
+
+  .fa-check {
+    padding: 0.1rem;
+    font-size: 1.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
