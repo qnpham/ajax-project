@@ -104,6 +104,10 @@ $body.addEventListener('click', function (event) {
       }
     }
   }
+  if (data.list.viewing === true) {
+    $plus.classList.add('hidden');
+    $check.classList.add('hidden');
+  }
 
   if (event.target.getAttribute('id') === 'list-close') {
     closeList();
