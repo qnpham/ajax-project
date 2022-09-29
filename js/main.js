@@ -173,7 +173,10 @@ function checkList() {
 
 function viewList() {
   var $searchResult = document.querySelector('[data-view="search-result"]');
+  $navForm.classList.add('hidden');
+  data.list.viewing = true;
   $searchResult.classList.add('hidden');
+  $homePage.classList.add('hidden');
   $main.appendChild(createList());
 }
 
