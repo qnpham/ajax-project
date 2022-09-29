@@ -7,6 +7,9 @@ var $navForm = document.querySelector('#nav-form');
 var $body = document.querySelector('body');
 var $moviePage = document.querySelector('[data-view="movie-page"]');
 var $close = document.querySelector('.fa-xmark');
+var $plus = document.querySelector('.fa-plus');
+var $check = document.querySelector('.fa-check');
+
 $navHeader.addEventListener('click', function (event) {
   var $container = document.querySelectorAll('.container');
   var $searchResult = document.querySelector('[data-view="search-result"]');
@@ -89,8 +92,9 @@ $body.addEventListener('click', function (event) {
   if (event.target.matches('img')) {
     for (var i = 0; i < data.searchResult.length; i++) {
       if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
-        data.viewing.search = (data.searchResult[i]);
-        getDetails(data.viewing.search.imdbID);
+        data.viewing.currentlyViewing = (data.searchResult[i]);
+        checkList();
+        getDetails(data.viewing.currentlyViewing.imdbID);
       }
     }
   }
@@ -101,6 +105,8 @@ $close.addEventListener('click', function () {
   $moviePage.classList.add('hidden');
   $navForm.classList.remove('hidden');
   $searchResult.classList.remove('hidden');
+  $plus.classList.remove('hidden');
+  $check.classList.add('hidden');
 });
 
 function getDetails(id) {
@@ -108,8 +114,8 @@ function getDetails(id) {
   xhr.open('GET', 'https://omdbapi.com/?apikey=e9abc53b&i=' + id);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    data.viewing.result = xhr.response;
-    setMoviePage(data.viewing.result);
+    data.viewing.info = xhr.response;
+    setMoviePage(data.viewing.info);
     showMoviePage();
   });
   xhr.send();
@@ -142,9 +148,21 @@ function setMoviePage(movie) {
 
 function showMoviePage() {
   var $searchResult = document.querySelector('[data-view="search-result"]');
-  if (data.viewing.result !== null) {
-    $moviePage.classList.remove('hidden');
-    $navForm.classList.add('hidden');
-    $searchResult.classList.add('hidden');
+  $moviePage.classList.remove('hidden');
+  $navForm.classList.add('hidden');
+  $searchResult.classList.add('hidden');
+}
+
+$plus.addEventListener('click', function () {
+  data.list.array.unshift(data.viewing.currentlyViewing);
+  checkList();
+});
+
+function checkList() {
+  for (var i = 0; i < data.list.array.length; i++) {
+    if (data.viewing.currentlyViewing.imdbID === data.list.array[i].imdbID) {
+      $plus.classList.add('hidden');
+      $check.classList.remove('hidden');
+    }
   }
 }
