@@ -1,7 +1,7 @@
 /* exported data */
 var data = {
   searchResult: [],
-  viewing: { search: null, result: null },
+  viewing: { currentlyViewing: null, info: null },
   search: '',
   list: {
     viewing: false,
