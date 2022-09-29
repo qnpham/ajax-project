@@ -78,7 +78,7 @@ function createImage() {
 
   function createColumn(index) {
     var column = document.createElement('div');
-    column.setAttribute('class', 'column-one-third text-center');
+    column.setAttribute('class', 'column-one-third margin-auto');
     var img = document.createElement('img');
     img.setAttribute('src', data.searchResult[index].Poster);
     column.appendChild(img);
