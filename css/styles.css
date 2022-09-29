@@ -31,12 +31,6 @@ p {
   font-weight: 300;
 }
 
-.search {
-  width: 60%;
-  margin: auto;
-  justify-content: center;
-}
-
 input {
   margin-top: 0.75rem;
   border-radius: 7px;
@@ -61,6 +55,22 @@ img {
 span {
   font-size: 0.75rem;
   font-weight: 300;
+}
+
+.search {
+  width: 60%;
+  margin: auto;
+  justify-content: center;
+}
+
+.fa-xmark {
+  color: white;
+  text-align: center;
+  padding-left: 0.5rem;
+}
+
+.fa-xmark:hover {
+  cursor: pointer;
 }
 
 .fa-magnifying-glass {
@@ -130,12 +140,6 @@ header .fa-magnifying-glass {
 
 [data-view="home-page"] {
   margin-top: 35vh;
-}
-
-.fa-xmark {
-  color: white;
-  text-align: center;
-  padding-left: 0.5rem;
 }
 
 .movie-page-img {

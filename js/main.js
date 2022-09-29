@@ -40,6 +40,7 @@ $homeForm.addEventListener('submit', function (event) {
   event.preventDefault();
   $homePage.classList.add('hidden');
   $nav.classList.remove('hidden');
+  $navForm.classList.remove('hidden');
   $navInput.value = data.search;
   getApi(data.search);
 
