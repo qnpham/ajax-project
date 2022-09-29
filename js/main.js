@@ -151,5 +151,5 @@ function showMoviePage() {
 }
 
 $plus.addEventListener('click', function () {
-
+  data.list.array.unshift(data.viewing.result);
 });
