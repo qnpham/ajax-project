@@ -6,5 +6,6 @@ var data = {
   list: {
     viewing: false,
     array: []
-  }
+  },
+  pageView: null
 };
