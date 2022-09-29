@@ -75,7 +75,6 @@ function createImage() {
 
   var row = document.createElement('div');
   row.setAttribute('class', 'row');
-  container.appendChild(row);
 
   for (var i = 0; i < data.searchResult.length; i++) {
     row.appendChild(createColumn(i));
@@ -173,5 +172,44 @@ function checkList() {
 }
 
 function viewList() {
-  alert('hi');
+  var $searchResult = document.querySelector('[data-view="search-result"]');
+  $searchResult.classList.add('hidden');
+  $main.appendChild(createList());
+}
+
+function createList() {
+  var tempList = data.list.array;
+  var container = document.createElement('div');
+  container.setAttribute('class', 'container text-center');
+  container.setAttribute('data-view', 'list-page');
+
+  var row = document.createElement('div');
+  row.setAttribute('class', 'row');
+
+  var columnOneFourth = document.createElement('div');
+  columnOneFourth.className = 'column-one-fourth';
+  row.appendChild(columnOneFourth);
+
+  var close = document.createElement('i');
+  close.className = 'fa-solid fa-xmark';
+  columnOneFourth.appendChild(close);
+
+  var row2 = document.createElement('div');
+  row2.className = 'row';
+
+  for (var i = 0; i < tempList.length; i++) {
+    row2.appendChild(createColumn(i));
+  }
+
+  function createColumn(index) {
+    var column = document.createElement('div');
+    column.setAttribute('class', 'column-one-third margin-auto');
+    var img = document.createElement('img');
+    img.setAttribute('src', tempList[index].Poster);
+    column.appendChild(img);
+    return column;
+  }
+  container.appendChild(row);
+  container.appendChild(row2);
+  return container;
 }
