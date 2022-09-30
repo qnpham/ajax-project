@@ -101,7 +101,6 @@ function createImage() {
 }
 $body.addEventListener('click', function (event) {
   if (event.target.matches('img')) {
-    $list.classList.add('hidden');
     if (data.list.viewing === true) {
       var $listPage = document.querySelector('[data-view="list-page"]');
       $listPage.classList.add('hidden');
@@ -115,7 +114,6 @@ $body.addEventListener('click', function (event) {
     } else {
       for (var i = 0; i < data.searchResult.length; i++) {
         if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
-          $plus.classList.remove('hidden');
           data.movieView.currentlyViewing = (data.searchResult[i]);
           checkList();
           getDetails(data.movieView.currentlyViewing.imdbID);
@@ -139,9 +137,9 @@ $close.addEventListener('click', function () {
     $moviePage.classList.add('hidden');
     $navForm.classList.remove('hidden');
     $searchResult.classList.remove('hidden');
-    $plus.classList.remove('hidden');
     $check.classList.add('hidden');
     $list.classList.remove('hidden');
+    checkList();
   }
 
 });
@@ -198,21 +196,29 @@ $plus.addEventListener('click', function () {
 });
 
 function checkList() {
+  var includes = false;
   for (var i = 0; i < data.list.array.length; i++) {
     if (data.movieView.currentlyViewing.imdbID === data.list.array[i].imdbID) {
-      $plus.classList.add('hidden');
-      $check.classList.remove('hidden');
+      includes = true;
     }
   }
+
+  if (includes === true) {
+    $plus.classList.add('hidden');
+    $check.classList.remove('hidden');
+  } else {
+    $plus.classList.remove('hidden');
+    $check.classList.add('hidden');
+  }
+
 }
 
 function viewList() {
   var $searchResult = document.querySelector('[data-view="search-result"]');
-  $list.classList.add('hidden');
   if (data.list.viewing === true) {
     closeList();
   }
-  $list.classList.add('hidden');
+  $moviePage.classList.add('hidden');
   data.list.viewing = true;
   $navForm.classList.add('hidden');
   $homePage.classList.add('hidden');
@@ -274,8 +280,6 @@ function closeList() {
     $searchResult.classList.remove('hidden');
     $list.classList.remove('hidden');
   }
-
-  // $plus.classList.remove('hidden');
 
   data.list.viewing = false;
 }
