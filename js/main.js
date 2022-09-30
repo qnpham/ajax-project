@@ -84,16 +84,7 @@ function createImage() {
   row.setAttribute('class', 'row');
 
   for (var i = 0; i < data.searchResult.length; i++) {
-    row.appendChild(createColumn(i));
-  }
-
-  function createColumn(index) {
-    var column = document.createElement('div');
-    column.setAttribute('class', 'column-one-third margin-auto');
-    var img = document.createElement('img');
-    img.setAttribute('src', data.searchResult[index].Poster);
-    column.appendChild(img);
-    return column;
+    row.appendChild(createColumn(data.searchResult[i]));
   }
   container.appendChild(row);
   return container;
@@ -253,20 +244,21 @@ function createList() {
   row2.className = 'row';
 
   for (var i = 0; i < tempList.length; i++) {
-    row2.appendChild(createColumn(i));
+    row2.appendChild(createColumn(tempList[i]));
   }
 
-  function createColumn(index) {
-    var column = document.createElement('div');
-    column.setAttribute('class', 'column-one-third margin-auto');
-    var img = document.createElement('img');
-    img.setAttribute('src', tempList[index].Poster);
-    column.appendChild(img);
-    return column;
-  }
   container.appendChild(row);
   container.appendChild(row2);
   return container;
+}
+
+function createColumn(movie) {
+  var column = document.createElement('div');
+  column.setAttribute('class', 'column-one-third margin-auto');
+  var img = document.createElement('img');
+  img.setAttribute('src', movie.Poster);
+  column.appendChild(img);
+  return column;
 }
 
 function closeList() {
