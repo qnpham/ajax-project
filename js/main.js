@@ -113,6 +113,7 @@ $body.addEventListener('click', function (event) {
     } else {
       for (var i = 0; i < data.searchResult.length; i++) {
         if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
+          $plus.classList.remove('hidden');
           data.movieView.currentlyViewing = (data.searchResult[i]);
           checkList();
           getDetails(data.movieView.currentlyViewing.imdbID);
@@ -272,7 +273,7 @@ function closeList() {
     $list.classList.remove('hidden');
   }
 
-  $plus.classList.remove('hidden');
+  // $plus.classList.remove('hidden');
 
   data.list.viewing = false;
 }
