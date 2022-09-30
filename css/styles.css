@@ -13,7 +13,7 @@ h1 {
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 1.25rem;
   font-family: "RocknRoll One", sans-serif;
   font-weight: 400;
   color: white;
@@ -57,8 +57,17 @@ span {
   font-weight: 300;
 }
 
+a {
+  background-color: #23262a;
+  font-family: roboto, sans-serif;
+  padding: 0.5rem 1rem;
+  color: white;
+  text-decoration: none;
+  font-size: 0.75rem;
+}
+
 .search {
-  width: 60%;
+  width: 70%;
   margin: auto;
   justify-content: center;
 }
@@ -92,17 +101,27 @@ span {
 
 .fa-btn {
   position: relative;
+  width: 0;
+  margin-left: 1px;
   background: none;
   border: none;
-  padding-left: 0.5rem;
 }
 
 #nav-header:hover {
   cursor: pointer;
 }
 
+[data-item="list"]:hover {
+  cursor: pointer;
+}
+
 .nav-content {
   justify-content: center;
+}
+
+#list {
+  font-size: 0.75rem;
+  text-align: center;
 }
 
 header {
@@ -191,9 +210,28 @@ header .fa-magnifying-glass {
   height: 100vh;
 }
 
+.view-list-btn {
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.list-close-container {
+  display: flex;
+  justify-content: start;
+}
+
 @media only screen and (min-width: 768px) {
+  a {
+    font-size: 0.95rem;
+    padding: 0.65rem 1.5rem;
+  }
+
   h1 {
     display: inline;
+  }
+
+  h2 {
+    font-size: 1.75rem;
   }
 
   h4 {
@@ -209,7 +247,7 @@ header .fa-magnifying-glass {
   }
 
   [data-view="movie-page"] {
-    margin-top: 2rem;
+    margin-top: 0.25rem;
   }
 
   .movie-page-img {
@@ -252,6 +290,8 @@ header .fa-magnifying-glass {
   }
 
   .btn-container {
+    width: 3.25rem;
+    height: 3.25rem;
     margin-top: 2rem;
     justify-content: start;
   }
@@ -265,6 +305,14 @@ header .fa-magnifying-glass {
     font-size: 1rem;
     width: 1.35rem;
     height: 1.35rem;
+  }
+
+  .search {
+    width: 50%;
+  }
+
+  #list {
+    font-size: 1rem;
   }
 }
 
@@ -297,7 +345,6 @@ header .fa-magnifying-glass {
 
   .btn-container {
     margin-top: 5rem;
-    height: 3rem;
   }
 
   .fa-plus {

@@ -9,6 +9,11 @@ var $moviePage = document.querySelector('[data-view="movie-page"]');
 var $close = document.querySelector('.fa-xmark');
 var $plus = document.querySelector('.fa-plus');
 var $check = document.querySelector('.fa-check');
+var $list = document.querySelector('[data-item="list"]');
+var $listBtn = document.querySelector('[data-item="list-btn"]');
+
+$list.addEventListener('click', viewList);
+$listBtn.addEventListener('click', viewList);
 
 $navHeader.addEventListener('click', function (event) {
   var $container = document.querySelectorAll('.container');
@@ -20,9 +25,13 @@ $navHeader.addEventListener('click', function (event) {
   for (var i = 0; i < $container.length; i++) {
     $container[i].classList.add('hidden');
   }
+  data.pageView = 'home';
   $homePage.classList.remove('hidden');
   $homeForm.reset();
   $navForm.reset();
+  if (data.list.viewing === true) {
+    closeList();
+  }
 });
 
 $navForm.addEventListener('submit', function (event) {
@@ -46,6 +55,7 @@ $homeForm.addEventListener('submit', function (event) {
   $navForm.classList.remove('hidden');
   $navInput.value = data.search;
   getApi(data.search);
+  data.pageView = 'search';
 
 });
 
@@ -56,7 +66,9 @@ function getApi(keyword) {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     for (var i = 0; i < xhr.response.Search.length; i++) {
-      data.searchResult.push(xhr.response.Search[i]);
+      if (xhr.response.Search[i].Poster !== 'N/A') {
+        data.searchResult.push(xhr.response.Search[i]);
+      }
     }
     $main.appendChild(createImage());
   });
@@ -65,24 +77,14 @@ function getApi(keyword) {
 
 function createImage() {
   var container = document.createElement('div');
-  container.setAttribute('class', 'container');
+  container.setAttribute('class', 'container text-center');
   container.setAttribute('data-view', 'search-result');
 
   var row = document.createElement('div');
   row.setAttribute('class', 'row');
-  container.appendChild(row);
 
   for (var i = 0; i < data.searchResult.length; i++) {
-    row.appendChild(createColumn(i));
-  }
-
-  function createColumn(index) {
-    var column = document.createElement('div');
-    column.setAttribute('class', 'column-one-third text-center');
-    var img = document.createElement('img');
-    img.setAttribute('src', data.searchResult[index].Poster);
-    column.appendChild(img);
-    return column;
+    row.appendChild(createColumn(data.searchResult[i]));
   }
   container.appendChild(row);
   return container;
@@ -90,23 +92,48 @@ function createImage() {
 }
 $body.addEventListener('click', function (event) {
   if (event.target.matches('img')) {
-    for (var i = 0; i < data.searchResult.length; i++) {
-      if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
-        data.viewing.currentlyViewing = (data.searchResult[i]);
-        checkList();
-        getDetails(data.viewing.currentlyViewing.imdbID);
+    $list.classList.add('hidden');
+    if (data.list.viewing === true) {
+      var $listPage = document.querySelector('[data-view="list-page"]');
+      $listPage.classList.add('hidden');
+      for (var z = 0; z < data.list.array.length; z++) {
+        if (data.list.array[z].Poster === event.target.getAttribute('src')) {
+          getDetails(data.list.array[z].imdbID);
+          $plus.classList.add('hidden');
+          $check.classList.add('hidden');
+        }
+      }
+    } else {
+      for (var i = 0; i < data.searchResult.length; i++) {
+        if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
+          data.movieView.currentlyViewing = (data.searchResult[i]);
+          checkList();
+          getDetails(data.movieView.currentlyViewing.imdbID);
+        }
       }
     }
+  }
+
+  if (event.target.getAttribute('id') === 'list-close') {
+    closeList();
   }
 });
 
 $close.addEventListener('click', function () {
-  var $searchResult = document.querySelector('[data-view="search-result"]');
-  $moviePage.classList.add('hidden');
-  $navForm.classList.remove('hidden');
-  $searchResult.classList.remove('hidden');
-  $plus.classList.remove('hidden');
-  $check.classList.add('hidden');
+
+  if (data.list.viewing === true) {
+    $moviePage.classList.add('hidden');
+    viewList();
+  } else {
+    var $searchResult = document.querySelector('[data-view="search-result"]');
+    $moviePage.classList.add('hidden');
+    $navForm.classList.remove('hidden');
+    $searchResult.classList.remove('hidden');
+    $check.classList.add('hidden');
+    $list.classList.remove('hidden');
+    checkList();
+  }
+
 });
 
 function getDetails(id) {
@@ -114,8 +141,8 @@ function getDetails(id) {
   xhr.open('GET', 'https://omdbapi.com/?apikey=e9abc53b&i=' + id);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    data.viewing.info = xhr.response;
-    setMoviePage(data.viewing.info);
+    data.movieView.info = xhr.response;
+    setMoviePage(data.movieView.info);
     showMoviePage();
   });
   xhr.send();
@@ -150,19 +177,103 @@ function showMoviePage() {
   var $searchResult = document.querySelector('[data-view="search-result"]');
   $moviePage.classList.remove('hidden');
   $navForm.classList.add('hidden');
-  $searchResult.classList.add('hidden');
+  if ($searchResult) {
+    $searchResult.classList.add('hidden');
+  }
 }
 
 $plus.addEventListener('click', function () {
-  data.list.array.unshift(data.viewing.currentlyViewing);
+  data.list.array.unshift(data.movieView.currentlyViewing);
   checkList();
 });
 
 function checkList() {
+  var includes = false;
   for (var i = 0; i < data.list.array.length; i++) {
-    if (data.viewing.currentlyViewing.imdbID === data.list.array[i].imdbID) {
-      $plus.classList.add('hidden');
-      $check.classList.remove('hidden');
+    if (data.movieView.currentlyViewing.imdbID === data.list.array[i].imdbID) {
+      includes = true;
     }
   }
+
+  if (includes === true) {
+    $plus.classList.add('hidden');
+    $check.classList.remove('hidden');
+  } else {
+    $plus.classList.remove('hidden');
+    $check.classList.add('hidden');
+  }
+
+}
+
+function viewList() {
+  var $searchResult = document.querySelector('[data-view="search-result"]');
+  if (data.list.viewing === true) {
+    closeList();
+  }
+  $list.classList.add('hidden');
+  $moviePage.classList.add('hidden');
+  data.list.viewing = true;
+  $navForm.classList.add('hidden');
+  $homePage.classList.add('hidden');
+  $nav.classList.remove('hidden');
+  if ($searchResult) {
+    $searchResult.classList.add('hidden');
+  }
+  $main.appendChild(createList());
+}
+
+function createList() {
+  var tempList = data.list.array;
+  var container = document.createElement('div');
+  container.setAttribute('class', 'container text-center');
+  container.setAttribute('data-view', 'list-page');
+
+  var row = document.createElement('div');
+  row.setAttribute('class', 'row');
+
+  var columnOneFourth = document.createElement('div');
+  columnOneFourth.className = 'column-one-fourth list-close-container';
+  row.appendChild(columnOneFourth);
+
+  var close = document.createElement('i');
+  close.className = 'fa-solid fa-xmark';
+  close.setAttribute('id', 'list-close');
+  columnOneFourth.appendChild(close);
+
+  var row2 = document.createElement('div');
+  row2.className = 'row';
+
+  for (var i = 0; i < tempList.length; i++) {
+    row2.appendChild(createColumn(tempList[i]));
+  }
+
+  container.appendChild(row);
+  container.appendChild(row2);
+  return container;
+}
+
+function createColumn(movie) {
+  var column = document.createElement('div');
+  column.setAttribute('class', 'column-one-third margin-auto');
+  var img = document.createElement('img');
+  img.setAttribute('src', movie.Poster);
+  column.appendChild(img);
+  return column;
+}
+
+function closeList() {
+  var $listPage = document.querySelector('[data-view="list-page"]');
+  var $searchResult = document.querySelector('[data-view="search-result"]');
+
+  $listPage.remove();
+  if (data.pageView === 'home') {
+    $homePage.classList.remove('hidden');
+    $nav.classList.add('hidden');
+  } else if (data.pageView === 'search') {
+    $navForm.classList.remove('hidden');
+    $searchResult.classList.remove('hidden');
+    $list.classList.remove('hidden');
+  }
+
+  data.list.viewing = false;
 }
