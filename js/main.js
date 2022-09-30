@@ -9,11 +9,35 @@ var $moviePage = document.querySelector('[data-view="movie-page"]');
 var $close = document.querySelector('.fa-xmark');
 var $plus = document.querySelector('.fa-plus');
 var $check = document.querySelector('.fa-check');
-var $list = document.querySelector('[data-item="list"]');
+var $list = document.querySelector('#list');
 var $listBtn = document.querySelector('[data-item="list-btn"]');
+var $minus = document.querySelector('.fa-minus');
+var $modal = document.querySelector('.modal');
+var $no = document.querySelector('.no');
+var $yes = document.querySelector('.yes');
 
 $list.addEventListener('click', viewList);
 $listBtn.addEventListener('click', viewList);
+
+$minus.addEventListener('click', function () {
+  $modal.classList.remove('hidden');
+
+});
+
+$yes.addEventListener('click', function () {
+  for (var i = 0; i < data.list.array.length; i++) {
+    if (data.movieView.currentlyViewing.imdbID === data.list.array[i].imdbID) {
+      data.list.array.splice(i, 1);
+      $moviePage.classList.add('hidden');
+      $modal.classList.add('hidden');
+      viewList();
+    }
+  }
+});
+
+$no.addEventListener('click', function () {
+  $modal.classList.add('hidden');
+});
 
 $navHeader.addEventListener('click', function (event) {
   var $container = document.querySelectorAll('.container');
@@ -98,9 +122,11 @@ $body.addEventListener('click', function (event) {
       $listPage.classList.add('hidden');
       for (var z = 0; z < data.list.array.length; z++) {
         if (data.list.array[z].Poster === event.target.getAttribute('src')) {
+          data.movieView.currentlyViewing = data.list.array[z];
           getDetails(data.list.array[z].imdbID);
           $plus.classList.add('hidden');
           $check.classList.add('hidden');
+          $minus.classList.remove('hidden');
         }
       }
     } else {
@@ -220,6 +246,7 @@ function viewList() {
     $searchResult.classList.add('hidden');
   }
   $main.appendChild(createList());
+  checkMovies();
 }
 
 function createList() {
@@ -242,6 +269,11 @@ function createList() {
 
   var row2 = document.createElement('div');
   row2.className = 'row';
+
+  var p = document.createElement('p');
+  p.textContent = 'No movies added.';
+  p.className = 'no-movies hidden';
+  container.appendChild(p);
 
   for (var i = 0; i < tempList.length; i++) {
     row2.appendChild(createColumn(tempList[i]));
@@ -275,5 +307,15 @@ function closeList() {
     $list.classList.remove('hidden');
   }
 
+  $minus.classList.add('hidden');
   data.list.viewing = false;
+}
+
+function checkMovies() {
+  var $noMovies = document.querySelector('.no-movies');
+  if (data.list.array.length === 0) {
+    $noMovies.classList.remove('hidden');
+  } else {
+    $noMovies.classList.add('hidden');
+  }
 }

@@ -9,3 +9,12 @@ var data = {
   },
   pageView: 'home'
 };
+var userList = localStorage.getItem('userList');
+if (userList) {
+  data.list.array = JSON.parse(userList);
+}
+
+window.addEventListener('beforeunload', function () {
+
+  this.localStorage.setItem('userList', JSON.stringify(data.list.array));
+});
