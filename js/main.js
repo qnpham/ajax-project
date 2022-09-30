@@ -246,6 +246,7 @@ function viewList() {
     $searchResult.classList.add('hidden');
   }
   $main.appendChild(createList());
+  checkMovies();
 }
 
 function createList() {
@@ -268,6 +269,11 @@ function createList() {
 
   var row2 = document.createElement('div');
   row2.className = 'row';
+
+  var p = document.createElement('p');
+  p.textContent = 'No movies added.';
+  p.className = 'no-movies hidden';
+  container.appendChild(p);
 
   for (var i = 0; i < tempList.length; i++) {
     row2.appendChild(createColumn(tempList[i]));
@@ -303,4 +309,13 @@ function closeList() {
 
   $minus.classList.add('hidden');
   data.list.viewing = false;
+}
+
+function checkMovies() {
+  var $noMovies = document.querySelector('.no-movies');
+  if (data.list.array.length === 0) {
+    $noMovies.classList.remove('hidden');
+  } else {
+    $noMovies.classList.add('hidden');
+  }
 }
