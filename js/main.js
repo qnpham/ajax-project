@@ -66,7 +66,9 @@ function getApi(keyword) {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     for (var i = 0; i < xhr.response.Search.length; i++) {
-      data.searchResult.push(xhr.response.Search[i]);
+      if (xhr.response.Search[i].Poster !== 'N/A') {
+        data.searchResult.push(xhr.response.Search[i]);
+      }
     }
     $main.appendChild(createImage());
   });
