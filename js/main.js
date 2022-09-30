@@ -11,6 +11,7 @@ var $plus = document.querySelector('.fa-plus');
 var $check = document.querySelector('.fa-check');
 var $list = document.querySelector('[data-item="list"]');
 var $listBtn = document.querySelector('[data-item="list-btn"]');
+var $minus = document.querySelector('.fa-minus');
 
 $list.addEventListener('click', viewList);
 $listBtn.addEventListener('click', viewList);
@@ -101,6 +102,7 @@ $body.addEventListener('click', function (event) {
           getDetails(data.list.array[z].imdbID);
           $plus.classList.add('hidden');
           $check.classList.add('hidden');
+          $minus.classList.remove('hidden');
         }
       }
     } else {
