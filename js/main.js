@@ -12,9 +12,15 @@ var $check = document.querySelector('.fa-check');
 var $list = document.querySelector('[data-item="list"]');
 var $listBtn = document.querySelector('[data-item="list-btn"]');
 var $minus = document.querySelector('.fa-minus');
+var $modal = document.querySelector('.modal');
 
 $list.addEventListener('click', viewList);
 $listBtn.addEventListener('click', viewList);
+
+$minus.addEventListener('click', function () {
+  $modal.classList.remove('hidden');
+
+});
 
 $navHeader.addEventListener('click', function (event) {
   var $container = document.querySelectorAll('.container');
