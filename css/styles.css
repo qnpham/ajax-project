@@ -219,7 +219,7 @@ header .fa-magnifying-glass {
 }
 
 [data-view="movie-page"] {
-  height: 107vh;
+  padding-bottom: 7rem;
 }
 
 .view-list-btn {
@@ -237,7 +237,7 @@ header .fa-magnifying-glass {
   opacity: 0.75;
   position: absolute;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: black;
 }
 
@@ -310,11 +310,6 @@ header .fa-magnifying-glass {
 
   #nav-header {
     font-size: 1rem;
-  }
-
-  [data-view="movie-page"] {
-    margin-top: 0.25rem;
-    height: 100vh;
   }
 
   .movie-page-img {
