@@ -96,7 +96,7 @@ function createImage() {
 }
 $body.addEventListener('click', function (event) {
   if (event.target.matches('img')) {
-
+    $list.classList.add('hidden');
     if (data.list.viewing === true) {
       var $listPage = document.querySelector('[data-view="list-page"]');
       $listPage.classList.add('hidden');
@@ -110,7 +110,6 @@ $body.addEventListener('click', function (event) {
     } else {
       for (var i = 0; i < data.searchResult.length; i++) {
         if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
-          $list.classList.add('hidden');
           data.movieView.currentlyViewing = (data.searchResult[i]);
           checkList();
           getDetails(data.movieView.currentlyViewing.imdbID);
@@ -182,7 +181,9 @@ function showMoviePage() {
   var $searchResult = document.querySelector('[data-view="search-result"]');
   $moviePage.classList.remove('hidden');
   $navForm.classList.add('hidden');
-  $searchResult.classList.add('hidden');
+  if ($searchResult) {
+    $searchResult.classList.add('hidden');
+  }
 }
 
 $plus.addEventListener('click', function () {
@@ -200,10 +201,12 @@ function checkList() {
 }
 
 function viewList() {
+  var $searchResult = document.querySelector('[data-view="search-result"]');
+  $list.classList.add('hidden');
   if (data.list.viewing === true) {
     closeList();
   }
-  var $searchResult = document.querySelector('[data-view="search-result"]');
+  $list.classList.add('hidden');
   data.list.viewing = true;
   $navForm.classList.add('hidden');
   $homePage.classList.add('hidden');
@@ -263,6 +266,7 @@ function closeList() {
   } else if (data.pageView === 'search') {
     $navForm.classList.remove('hidden');
     $searchResult.classList.remove('hidden');
+    $list.classList.remove('hidden');
   }
 
   $plus.classList.remove('hidden');
