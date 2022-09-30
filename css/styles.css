@@ -195,12 +195,20 @@ header .fa-magnifying-glass {
   font-size: 1.25rem;
 }
 
+.fa-minus {
+  padding: 0.15rem;
+  background-color: #292828;
+  font-size: 0.95rem;
+  border-radius: 15px;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
 .fa-check {
   padding: 0.01rem;
   color: black;
   background-color: white;
-  border: 1px solid white;
-  border-radius: 11px;
+  border-radius: 15px;
   font-size: 0.95rem;
   width: 1rem;
   height: 1rem;
@@ -301,10 +309,17 @@ header .fa-magnifying-glass {
   }
 
   .fa-check {
-    padding: 0.1rem;
+    padding: 0.15rem;
     font-size: 1rem;
     width: 1.35rem;
     height: 1.35rem;
+  }
+
+  .fa-minus {
+    padding: 0.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.25rem;
   }
 
   .search {
@@ -352,9 +367,16 @@ header .fa-magnifying-glass {
   }
 
   .fa-check {
-    padding: 0.1rem;
+    padding: 0.2rem;
     font-size: 1.2rem;
     width: 1.5rem;
     height: 1.5rem;
+  }
+
+  .fa-minus {
+    padding: 0.25rem;
+    font-size: 1.5rem;
+    width: 1.75rem;
+    height: 1.75rem;
   }
 }
