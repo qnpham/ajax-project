@@ -13,6 +13,7 @@ var $list = document.querySelector('[data-item="list"]');
 var $listBtn = document.querySelector('[data-item="list-btn"]');
 var $minus = document.querySelector('.fa-minus');
 var $modal = document.querySelector('.modal');
+var $no = document.querySelector('.no');
 
 $list.addEventListener('click', viewList);
 $listBtn.addEventListener('click', viewList);
@@ -20,6 +21,10 @@ $listBtn.addEventListener('click', viewList);
 $minus.addEventListener('click', function () {
   $modal.classList.remove('hidden');
 
+});
+
+$no.addEventListener('click', function () {
+  $modal.classList.add('hidden');
 });
 
 $navHeader.addEventListener('click', function (event) {
