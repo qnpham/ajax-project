@@ -64,7 +64,7 @@ span {
   font-weight: 300;
 }
 
-a {
+.btn {
   background-color: #23262a;
   font-family: roboto, sans-serif;
   padding: 0.5rem 1rem;
@@ -106,12 +106,10 @@ a {
 
 .home {
   justify-content: center;
-  width: 100%;
 }
 
 .text-center {
   text-align: center;
-  margin: auto;
 }
 
 .fa-btn {
@@ -133,15 +131,17 @@ a {
 
 #list {
   font-size: 0.9rem;
-  text-align: center;
 }
 
-#list:hover {
-  cursor: pointer;
-}
-
-.nav-content {
+.header-btn-container {
+  display: flex;
   justify-content: center;
+}
+
+.header-btn {
+  font-family: roboto, sans-serif;
+  color: white;
+  text-decoration: none;
 }
 
 header {
