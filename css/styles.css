@@ -3,13 +3,12 @@ body {
   font-family: "Roboto Slab", serif;
   width: 100%;
   color: white;
+  line-height: 1.25rem;
 }
 
 h1 {
   font-family: "RocknRoll One", sans-serif;
   font-size: 1.25rem;
-  padding-bottom: 0;
-  margin-bottom: 0;
 }
 
 h2 {
@@ -17,7 +16,6 @@ h2 {
   font-family: "RocknRoll One", sans-serif;
   font-weight: 400;
   color: white;
-  text-align: center;
 }
 
 h4 {
@@ -28,7 +26,6 @@ h4 {
 
 h5 {
   font-weight: 400;
-  text-align: center;
   font-size: 0.75rem;
   color: black;
 }
@@ -39,7 +36,6 @@ p {
 }
 
 input {
-  margin-top: 0.75rem;
   border-radius: 7px;
   width: 80%;
   height: 1.55rem;
@@ -100,11 +96,10 @@ span {
 .fa-magnifying-glass {
   color: white;
   position: relative;
-  top: 0.45rem;
   font-size: 1.1rem;
 }
 
-.home {
+.justify-center {
   justify-content: center;
 }
 
@@ -160,17 +155,15 @@ header .search {
 
 header input {
   position: relative;
-  bottom: 0.3rem;
   height: 1.25rem;
 }
 
 header button {
   margin-right: auto;
-  bottom: 0.3rem;
 }
 
 header .fa-magnifying-glass {
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 [data-view="home-page"] {
@@ -183,7 +176,6 @@ header .fa-magnifying-glass {
 }
 
 .page-text-container {
-  margin: auto;
   width: 16rem;
   display: inline-block;
 }
@@ -191,10 +183,6 @@ header .fa-magnifying-glass {
 .label {
   font-size: 0.75rem;
   font-weight: 600;
-}
-
-.text {
-  padding-bottom: 0.25rem;
 }
 
 .margin-auto {
@@ -283,11 +271,6 @@ header .fa-magnifying-glass {
 }
 
 @media only screen and (min-width: 768px) {
-  a {
-    font-size: 0.75rem;
-    padding: 0.5rem 1.25rem;
-  }
-
   h1 {
     display: inline;
   }
@@ -348,10 +331,6 @@ header .fa-magnifying-glass {
     width: 80%;
   }
 
-  .text {
-    margin-top: 0.05rem;
-  }
-
   .fa-xmark {
     font-size: 1.25rem;
   }
@@ -362,10 +341,6 @@ header .fa-magnifying-glass {
 
   .column-three-fourths {
     width: 75%;
-  }
-
-  .movie-all-text {
-    justify-content: center;
   }
 
   .btn-container {
@@ -395,5 +370,10 @@ header .fa-magnifying-glass {
 
   .search {
     width: 45%;
+  }
+
+  .btn {
+    font-size: 0.75rem;
+    padding: 0.5rem 1.25rem;
   }
 }
