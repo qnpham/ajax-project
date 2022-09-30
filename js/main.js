@@ -96,18 +96,27 @@ function createImage() {
 }
 $body.addEventListener('click', function (event) {
   if (event.target.matches('img')) {
-    for (var i = 0; i < data.searchResult.length; i++) {
-      if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
-        $list.classList.add('hidden');
-        data.movieView.currentlyViewing = (data.searchResult[i]);
-        checkList();
-        getDetails(data.movieView.currentlyViewing.imdbID);
+
+    if (data.list.viewing === true) {
+      var $listPage = document.querySelector('[data-view="list-page"]');
+      $listPage.classList.add('hidden');
+      for (var z = 0; z < data.list.array.length; z++) {
+        if (data.list.array[z].Poster === event.target.getAttribute('src')) {
+          getDetails(data.list.array[z].imdbID);
+          $plus.classList.add('hidden');
+          $check.classList.add('hidden');
+        }
+      }
+    } else {
+      for (var i = 0; i < data.searchResult.length; i++) {
+        if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
+          $list.classList.add('hidden');
+          data.movieView.currentlyViewing = (data.searchResult[i]);
+          checkList();
+          getDetails(data.movieView.currentlyViewing.imdbID);
+        }
       }
     }
-  }
-  if (data.list.viewing === true) {
-    $plus.classList.add('hidden');
-    $check.classList.add('hidden');
   }
 
   if (event.target.getAttribute('id') === 'list-close') {
@@ -119,6 +128,7 @@ $close.addEventListener('click', function () {
 
   if (data.list.viewing === true) {
     $moviePage.classList.add('hidden');
+    viewList();
   } else {
     var $searchResult = document.querySelector('[data-view="search-result"]');
     $moviePage.classList.add('hidden');
