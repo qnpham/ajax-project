@@ -18,3 +18,8 @@ window.addEventListener('beforeunload', function () {
 
   this.localStorage.setItem('userList', JSON.stringify(data.list.array));
 });
+
+window.addEventListener('pagehide', function () {
+  this.localStorage.setItem('userList', JSON.stringify(data.list.array));
+
+});
