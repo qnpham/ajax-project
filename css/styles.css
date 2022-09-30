@@ -215,6 +215,11 @@ header .fa-magnifying-glass {
   width: 100%;
 }
 
+.list-close-container {
+  display: flex;
+  justify-content: start;
+}
+
 @media only screen and (min-width: 768px) {
   a {
     font-size: 0.95rem;

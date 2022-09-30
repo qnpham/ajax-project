@@ -98,6 +98,7 @@ $body.addEventListener('click', function (event) {
   if (event.target.matches('img')) {
     for (var i = 0; i < data.searchResult.length; i++) {
       if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
+        $list.classList.add('hidden');
         data.movieView.currentlyViewing = (data.searchResult[i]);
         checkList();
         getDetails(data.movieView.currentlyViewing.imdbID);
@@ -115,12 +116,19 @@ $body.addEventListener('click', function (event) {
 });
 
 $close.addEventListener('click', function () {
-  var $searchResult = document.querySelector('[data-view="search-result"]');
-  $moviePage.classList.add('hidden');
-  $navForm.classList.remove('hidden');
-  $searchResult.classList.remove('hidden');
-  $plus.classList.remove('hidden');
-  $check.classList.add('hidden');
+
+  if (data.list.viewing === true) {
+    $moviePage.classList.add('hidden');
+  } else {
+    var $searchResult = document.querySelector('[data-view="search-result"]');
+    $moviePage.classList.add('hidden');
+    $navForm.classList.remove('hidden');
+    $searchResult.classList.remove('hidden');
+    $plus.classList.remove('hidden');
+    $check.classList.add('hidden');
+    $list.classList.remove('hidden');
+  }
+
 });
 
 function getDetails(id) {
@@ -182,6 +190,9 @@ function checkList() {
 }
 
 function viewList() {
+  if (data.list.viewing === true) {
+    closeList();
+  }
   var $searchResult = document.querySelector('[data-view="search-result"]');
   data.list.viewing = true;
   $navForm.classList.add('hidden');
@@ -203,7 +214,7 @@ function createList() {
   row.setAttribute('class', 'row');
 
   var columnOneFourth = document.createElement('div');
-  columnOneFourth.className = 'column-one-fourth';
+  columnOneFourth.className = 'column-one-fourth list-close-container';
   row.appendChild(columnOneFourth);
 
   var close = document.createElement('i');
@@ -243,4 +254,8 @@ function closeList() {
     $navForm.classList.remove('hidden');
     $searchResult.classList.remove('hidden');
   }
+
+  $plus.classList.remove('hidden');
+
+  data.list.viewing = false;
 }
