@@ -247,7 +247,7 @@ header .fa-magnifying-glass {
   }
 
   [data-view="movie-page"] {
-    margin-top: 2rem;
+    margin-top: 0.25rem;
   }
 
   .movie-page-img {
@@ -290,6 +290,8 @@ header .fa-magnifying-glass {
   }
 
   .btn-container {
+    width: 3.25rem;
+    height: 3.25rem;
     margin-top: 2rem;
     justify-content: start;
   }
@@ -343,7 +345,6 @@ header .fa-magnifying-glass {
 
   .btn-container {
     margin-top: 5rem;
-    height: 3rem;
   }
 
   .fa-plus {

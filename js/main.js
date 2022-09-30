@@ -101,6 +101,7 @@ function createImage() {
 }
 $body.addEventListener('click', function (event) {
   if (event.target.matches('img')) {
+    $list.classList.add('hidden');
     if (data.list.viewing === true) {
       var $listPage = document.querySelector('[data-view="list-page"]');
       $listPage.classList.add('hidden');
@@ -218,6 +219,7 @@ function viewList() {
   if (data.list.viewing === true) {
     closeList();
   }
+  $list.classList.add('hidden');
   $moviePage.classList.add('hidden');
   data.list.viewing = true;
   $navForm.classList.add('hidden');
