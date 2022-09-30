@@ -122,12 +122,17 @@ a {
   border: none;
 }
 
+#nav-header {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
 #nav-header:hover {
   cursor: pointer;
 }
 
 #list {
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   text-align: center;
 }
 
@@ -141,11 +146,6 @@ a {
 
 header {
   background-color: #23262a;
-}
-
-header h2 {
-  font-size: 0.75rem;
-  text-align: center;
 }
 
 header .row {
@@ -296,10 +296,6 @@ header .fa-magnifying-glass {
     font-size: 1.5rem;
   }
 
-  header h2 {
-    font-size: 1rem;
-  }
-
   h4 {
     padding-left: 0.8rem;
     font-size: 0.75rem;
@@ -326,6 +322,10 @@ header .fa-magnifying-glass {
 
   .no {
     font-size: 0.8rem;
+  }
+
+  #nav-header {
+    font-size: 1rem;
   }
 
   [data-view="movie-page"] {
@@ -395,9 +395,5 @@ header .fa-magnifying-glass {
 
   .search {
     width: 45%;
-  }
-
-  #list {
-    font-size: 0.8rem;
   }
 }
