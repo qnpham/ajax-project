@@ -14,6 +14,7 @@ var $listBtn = document.querySelector('[data-item="list-btn"]');
 var $minus = document.querySelector('.fa-minus');
 var $modal = document.querySelector('.modal');
 var $no = document.querySelector('.no');
+var $yes = document.querySelector('.yes');
 
 $list.addEventListener('click', viewList);
 $listBtn.addEventListener('click', viewList);
@@ -21,6 +22,17 @@ $listBtn.addEventListener('click', viewList);
 $minus.addEventListener('click', function () {
   $modal.classList.remove('hidden');
 
+});
+
+$yes.addEventListener('click', function () {
+  for (var i = 0; i < data.list.array.length; i++) {
+    if (data.movieView.currentlyViewing.imdbID === data.list.array[i].imdbID) {
+      data.list.array.splice(i, 1);
+      $moviePage.classList.add('hidden');
+      $modal.classList.add('hidden');
+      viewList();
+    }
+  }
 });
 
 $no.addEventListener('click', function () {
@@ -110,6 +122,7 @@ $body.addEventListener('click', function (event) {
       $listPage.classList.add('hidden');
       for (var z = 0; z < data.list.array.length; z++) {
         if (data.list.array[z].Poster === event.target.getAttribute('src')) {
+          data.movieView.currentlyViewing = data.list.array[z];
           getDetails(data.list.array[z].imdbID);
           $plus.classList.add('hidden');
           $check.classList.add('hidden');
@@ -288,5 +301,6 @@ function closeList() {
     $list.classList.remove('hidden');
   }
 
+  $minus.classList.add('hidden');
   data.list.viewing = false;
 }
