@@ -29,6 +29,9 @@ $navHeader.addEventListener('click', function (event) {
   $homePage.classList.remove('hidden');
   $homeForm.reset();
   $navForm.reset();
+  if (data.list.viewing === true) {
+    closeList();
+  }
 });
 
 $navForm.addEventListener('submit', function (event) {
