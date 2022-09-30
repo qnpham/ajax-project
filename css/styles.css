@@ -242,6 +242,7 @@ header .fa-magnifying-glass {
 }
 
 .modal-box {
+  border-radius: 3px;
   width: 14rem;
   position: fixed;
   display: inline-block;
