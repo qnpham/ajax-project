@@ -9,7 +9,7 @@ var $moviePage = document.querySelector('[data-view="movie-page"]');
 var $close = document.querySelector('.fa-xmark');
 var $plus = document.querySelector('.fa-plus');
 var $check = document.querySelector('.fa-check');
-var $list = document.querySelector('[data-item="list"]');
+var $list = document.querySelector('#list');
 var $listBtn = document.querySelector('[data-item="list-btn"]');
 var $minus = document.querySelector('.fa-minus');
 var $modal = document.querySelector('.modal');
