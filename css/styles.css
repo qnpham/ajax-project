@@ -174,7 +174,7 @@ header .fa-magnifying-glass {
 }
 
 [data-view="home-page"] {
-  margin-top: 30vh;
+  margin-top: 35vh;
 }
 
 .movie-page-img {
@@ -398,6 +398,44 @@ header .fa-magnifying-glass {
 
   [data-view="movie-page"] {
     padding-bottom: 0;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+  }
+
+  .label,
+  span,
+  p {
+    font-size: 1.25rem;
+  }
+
+  .fa-plus {
+    font-size: 1.75rem;
+  }
+
+  .fa-check {
+    font-size: 1.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .fa-minus {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 768px) and (min-height: 650px) {
+  .movie-page-content {
+    margin-top: 15vh;
   }
 }
 
