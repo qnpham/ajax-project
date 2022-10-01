@@ -15,6 +15,7 @@ var $minus = document.querySelector('.fa-minus');
 var $modal = document.querySelector('.modal');
 var $no = document.querySelector('.no');
 var $yes = document.querySelector('.yes');
+var $loading = document.querySelector('.loading');
 
 $list.addEventListener('click', viewList);
 $listBtn.addEventListener('click', viewList);
@@ -41,11 +42,6 @@ $no.addEventListener('click', function () {
 
 $navHeader.addEventListener('click', function (event) {
   var $container = document.querySelectorAll('.container');
-  var $searchResult = document.querySelector('[data-view="search-result"]');
-  if ($searchResult) {
-    $searchResult.remove();
-    data.searchResult = [];
-  }
   for (var i = 0; i < $container.length; i++) {
     $container[i].classList.add('hidden');
   }
@@ -60,12 +56,8 @@ $navHeader.addEventListener('click', function (event) {
 
 $navForm.addEventListener('submit', function (event) {
   event.preventDefault();
-  var $searchResult = document.querySelector('[data-view="search-result"]');
   var $navInput = document.querySelector('#nav-input');
   data.search = $navInput.value;
-  if ($searchResult) {
-    $searchResult.remove();
-  }
   getApi(data.search);
 });
 
@@ -84,25 +76,47 @@ $homeForm.addEventListener('submit', function (event) {
 });
 
 function getApi(keyword) {
+  $loading.classList.remove('hidden');
   data.searchResult = [];
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://omdbapi.com/?apikey=e9abc53b&s=' + keyword);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
+    if (xhr.response.Response === 'False') {
+      $main.appendChild(createImage(false));
+      $loading.classList.add('hidden');
+      return;
+    }
     for (var i = 0; i < xhr.response.Search.length; i++) {
       if (xhr.response.Search[i].Poster !== 'N/A') {
         data.searchResult.push(xhr.response.Search[i]);
       }
     }
+    $loading.classList.add('hidden');
     $main.appendChild(createImage());
   });
   xhr.send();
 }
 
-function createImage() {
+function createImage(boolean) {
+  var $searchResult = document.querySelector('[data-view="search-result"]');
+
+  if ($searchResult) {
+    $searchResult.remove();
+  }
+
   var container = document.createElement('div');
   container.setAttribute('class', 'container text-center');
   container.setAttribute('data-view', 'search-result');
+
+  if (boolean === false) {
+    var p2 = document.createElement('p');
+    p2.textContent = 'No movies found, Try again.';
+    p2.className = 'no-movies';
+    p2.setAttribute('id', 'empty-search-error');
+    container.appendChild(p2);
+    return container;
+  }
 
   var row = document.createElement('div');
   row.setAttribute('class', 'row');
@@ -273,6 +287,7 @@ function createList() {
   var p = document.createElement('p');
   p.textContent = 'No movies added.';
   p.className = 'no-movies hidden';
+  p.setAttribute('id', 'empty-list-error');
   container.appendChild(p);
 
   for (var i = 0; i < tempList.length; i++) {
@@ -312,10 +327,17 @@ function closeList() {
 }
 
 function checkMovies() {
-  var $noMovies = document.querySelector('.no-movies');
+  var $emptyList = document.querySelector('#empty-list-error');
   if (data.list.array.length === 0) {
-    $noMovies.classList.remove('hidden');
+    $emptyList.classList.remove('hidden');
   } else {
-    $noMovies.classList.add('hidden');
+    $emptyList.classList.add('hidden');
   }
 }
+
+// function checkSearch() {
+//   var $emptySearch = document.querySelector('#empty-search-error');
+//   if (data.response.Reponse === 'false') {
+
+//   }
+// }
