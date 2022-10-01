@@ -290,6 +290,10 @@ header .fa-magnifying-glass {
   margin-top: 35vh;
 }
 
+.empty-search-error {
+  margin-top: 2.5rem;
+}
+
 @media only screen and (min-width: 768px) {
   h1 {
     display: inline;

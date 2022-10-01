@@ -100,10 +100,15 @@ function getApi(keyword) {
     $loading.classList.add('hidden');
     $main.appendChild(createImage());
   });
+  xhr.addEventListener('error', function () {
+    $main.appendChild(createImage('networkError'));
+    $loading.classList.add('hidden');
+
+  });
   xhr.send();
 }
 
-function createImage(boolean) {
+function createImage(value) {
   var $searchResult = document.querySelector('[data-view="search-result"]');
 
   if ($searchResult) {
@@ -114,11 +119,16 @@ function createImage(boolean) {
   container.setAttribute('class', 'container text-center');
   container.setAttribute('data-view', 'search-result');
 
-  if (boolean === false) {
+  if (value === false) {
     var p2 = document.createElement('p');
     p2.textContent = 'No movies found, Try again.';
-    p2.className = 'no-movies';
-    p2.setAttribute('id', 'empty-search-error');
+    p2.className = 'no-movies empty-search-error';
+    container.appendChild(p2);
+    return container;
+  } else if (value === 'networkError') {
+    p2 = document.createElement('p');
+    p2.textContent = 'Sorry, there is a network error. Try again later.';
+    p2.className = 'no-movies empty-search-error';
     container.appendChild(p2);
     return container;
   }
@@ -339,10 +349,3 @@ function checkMovies() {
     $emptyList.classList.add('hidden');
   }
 }
-
-// function checkSearch() {
-//   var $emptySearch = document.querySelector('#empty-search-error');
-//   if (data.response.Reponse === 'false') {
-
-//   }
-// }
