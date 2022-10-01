@@ -92,6 +92,11 @@ function getApi(keyword) {
         data.searchResult.push(xhr.response.Search[i]);
       }
     }
+    if (data.searchResult.length === 0) {
+      $main.appendChild(createImage(false));
+      $loading.classList.add('hidden');
+      return;
+    }
     $loading.classList.add('hidden');
     $main.appendChild(createImage());
   });
