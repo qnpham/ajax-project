@@ -391,6 +391,10 @@ header .fa-magnifying-glass {
     font-size: 0.75rem;
     padding: 0.5rem 1.25rem;
   }
+
+  [data-view="movie-page"] {
+    padding-bottom: 0;
+  }
 }
 
 .lds-ellipsis {
