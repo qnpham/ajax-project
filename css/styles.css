@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   background-color: #212121;
   font-family: "Roboto Slab", serif;
@@ -229,7 +225,7 @@ header .fa-magnifying-glass {
 }
 
 [data-view="movie-page"] {
-  padding-bottom: 7rem;
+  padding-bottom: 1rem;
 }
 
 .view-list-btn {
