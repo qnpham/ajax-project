@@ -1,3 +1,3 @@
-# ajax-project
+# MyMovieList
 
-A dynamic HTML, CSS, and JavaScript solo project.
+A web app for movie enjoyers to keep a list of their movies.
