@@ -127,7 +127,7 @@ function createImage(value) {
     return container;
   } else if (value === 'networkError') {
     p2 = document.createElement('p');
-    p2.textContent = 'Sorry, there is a network error, try again later.';
+    p2.textContent = 'Sorry there is a network error, try again later.';
     p2.className = 'no-movies empty-search-error';
     container.appendChild(p2);
     return container;
