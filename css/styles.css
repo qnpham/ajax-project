@@ -119,9 +119,6 @@ span {
 #nav-header {
   font-size: 0.8rem;
   text-align: center;
-  font-family: roboto, sans-serif;
-  color: white;
-  text-decoration: none;
 }
 
 #nav-header:hover {
@@ -135,6 +132,12 @@ span {
 .header-btn-container {
   display: flex;
   justify-content: center;
+}
+
+.header-btn {
+  font-family: roboto, sans-serif;
+  color: white;
+  text-decoration: none;
 }
 
 #home-input {
@@ -198,6 +201,7 @@ header .fa-magnifying-glass {
   margin-top: 1rem;
   justify-content: center;
   align-items: center;
+  height: 1.5rem;
 }
 
 .fa-plus {
