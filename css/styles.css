@@ -60,6 +60,13 @@ span {
   font-weight: 300;
 }
 
+.fa-magnifying-glass {
+  color: white;
+  right: 0.5rem;
+  position: relative;
+  font-size: 1.1rem;
+}
+
 .btn {
   background-color: #23262a;
   font-family: roboto, sans-serif;
@@ -91,13 +98,6 @@ span {
 
 .fa-xmark:hover {
   cursor: pointer;
-}
-
-.fa-magnifying-glass {
-  color: white;
-  right: 0.5rem;
-  position: relative;
-  font-size: 1.1rem;
 }
 
 .justify-center {
@@ -172,6 +172,10 @@ header button {
 
 header .fa-magnifying-glass {
   font-size: 1rem;
+}
+
+.fa-magnifying-glass:hover {
+  cursor: pointer;
 }
 
 [data-view="home-page"] {
@@ -294,6 +298,10 @@ header .fa-magnifying-glass {
 
 .empty-search-error {
   margin-top: 2.5rem;
+}
+
+[data-view="search-result"] img:hover {
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {
