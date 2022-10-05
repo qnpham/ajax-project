@@ -210,7 +210,12 @@ function getDetails(id) {
   xhr.addEventListener('load', function () {
     data.movieView.info = xhr.response;
     setMoviePage(data.movieView.info);
-    showMoviePage();
+    var $searchResult = document.querySelector('[data-view="search-result"]');
+    $moviePage.classList.remove('hidden');
+    $navForm.classList.add('hidden');
+    if ($searchResult) {
+      $searchResult.classList.add('hidden');
+    }
   });
   xhr.send();
 }
@@ -237,15 +242,6 @@ function setMoviePage(movie) {
     if (movie.Ratings[i].Source === 'Internet Movie Database') {
       $score.textContent = movie.Ratings[i].Value;
     }
-  }
-}
-
-function showMoviePage() {
-  var $searchResult = document.querySelector('[data-view="search-result"]');
-  $moviePage.classList.remove('hidden');
-  $navForm.classList.add('hidden');
-  if ($searchResult) {
-    $searchResult.classList.add('hidden');
   }
 }
 
