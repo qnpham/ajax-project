@@ -162,7 +162,13 @@ $body.addEventListener('click', function (event) {
       for (var i = 0; i < data.searchData.length; i++) {
         if (data.searchData[i].Poster === event.target.getAttribute('src')) {
           data.movieView.currentlyViewing = (data.searchData[i]);
-          checkList();
+          if (movieAdded() === true) {
+            $plus.classList.add('hidden');
+            $check.classList.remove('hidden');
+          } else {
+            $plus.classList.remove('hidden');
+            $check.classList.add('hidden');
+          }
           getDetails(data.movieView.currentlyViewing.imdbID);
         }
       }
@@ -186,7 +192,13 @@ $close.addEventListener('click', function () {
     $searchResult.classList.remove('hidden');
     $check.classList.add('hidden');
     $list.classList.remove('hidden');
-    checkList();
+    if (movieAdded() === true) {
+      $plus.classList.add('hidden');
+      $check.classList.remove('hidden');
+    } else {
+      $plus.classList.remove('hidden');
+      $check.classList.add('hidden');
+    }
   }
 
 });
@@ -239,24 +251,24 @@ function showMoviePage() {
 
 $plus.addEventListener('click', function () {
   data.list.array.unshift(data.movieView.currentlyViewing);
-  checkList();
-});
-
-function checkList() {
-  var includes = false;
-  for (var i = 0; i < data.list.array.length; i++) {
-    if (data.movieView.currentlyViewing.imdbID === data.list.array[i].imdbID) {
-      includes = true;
-    }
-  }
-
-  if (includes === true) {
+  if (movieAdded() === true) {
     $plus.classList.add('hidden');
     $check.classList.remove('hidden');
   } else {
     $plus.classList.remove('hidden');
     $check.classList.add('hidden');
   }
+});
+
+function movieAdded() {
+  var added = false;
+  for (var i = 0; i < data.list.array.length; i++) {
+    if (data.movieView.currentlyViewing.imdbID === data.list.array[i].imdbID) {
+      added = true;
+    }
+  }
+
+  return added;
 
 }
 
