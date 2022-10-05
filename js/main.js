@@ -50,7 +50,21 @@ $navHeader.addEventListener('click', function (event) {
   $homeForm.reset();
   $navForm.reset();
   if (data.list.viewing === true) {
-    closeList();
+    var $listPage = document.querySelector('[data-view="list-page"]');
+    var $searchResult = document.querySelector('[data-view="search-result"]');
+
+    $listPage.remove();
+    if (data.pageView === 'home') {
+      $homePage.classList.remove('hidden');
+      $nav.classList.add('hidden');
+    } else if (data.pageView === 'search') {
+      $navForm.classList.remove('hidden');
+      $searchResult.classList.remove('hidden');
+      $list.classList.remove('hidden');
+    }
+
+    $minus.classList.add('hidden');
+    data.list.viewing = false;
   }
 });
 
@@ -144,10 +158,10 @@ function createImage(value) {
 
 }
 $body.addEventListener('click', function (event) {
+  var $listPage = document.querySelector('[data-view="list-page"]');
   if (event.target.matches('img')) {
     $list.classList.add('hidden');
     if (data.list.viewing === true) {
-      var $listPage = document.querySelector('[data-view="list-page"]');
       $listPage.classList.add('hidden');
       for (var z = 0; z < data.list.array.length; z++) {
         if (data.list.array[z].Poster === event.target.getAttribute('src')) {
@@ -176,7 +190,20 @@ $body.addEventListener('click', function (event) {
   }
 
   if (event.target.getAttribute('id') === 'list-close') {
-    closeList();
+    var $searchResult = document.querySelector('[data-view="search-result"]');
+
+    $listPage.remove();
+    if (data.pageView === 'home') {
+      $homePage.classList.remove('hidden');
+      $nav.classList.add('hidden');
+    } else if (data.pageView === 'search') {
+      $navForm.classList.remove('hidden');
+      $searchResult.classList.remove('hidden');
+      $list.classList.remove('hidden');
+    }
+
+    $minus.classList.add('hidden');
+    data.list.viewing = false;
   }
 });
 
@@ -272,7 +299,19 @@ function viewList() {
   var $searchResult = document.querySelector('[data-view="search-result"]');
 
   if (data.list.viewing === true) {
-    closeList();
+    var $listPage = document.querySelector('[data-view="list-page"]');
+    $listPage.remove();
+    if (data.pageView === 'home') {
+      $homePage.classList.remove('hidden');
+      $nav.classList.add('hidden');
+    } else if (data.pageView === 'search') {
+      $navForm.classList.remove('hidden');
+      $searchResult.classList.remove('hidden');
+      $list.classList.remove('hidden');
+    }
+
+    $minus.classList.add('hidden');
+    data.list.viewing = false;
   }
   $list.classList.add('hidden');
   $moviePage.classList.add('hidden');
@@ -335,24 +374,6 @@ function createColumn(movie) {
   img.setAttribute('src', movie.Poster);
   column.appendChild(img);
   return column;
-}
-
-function closeList() {
-  var $listPage = document.querySelector('[data-view="list-page"]');
-  var $searchResult = document.querySelector('[data-view="search-result"]');
-
-  $listPage.remove();
-  if (data.pageView === 'home') {
-    $homePage.classList.remove('hidden');
-    $nav.classList.add('hidden');
-  } else if (data.pageView === 'search') {
-    $navForm.classList.remove('hidden');
-    $searchResult.classList.remove('hidden');
-    $list.classList.remove('hidden');
-  }
-
-  $minus.classList.add('hidden');
-  data.list.viewing = false;
 }
 
 function isListEmpty() {
