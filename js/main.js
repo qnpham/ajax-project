@@ -262,6 +262,7 @@ function checkList() {
 
 function viewList() {
   var $searchResult = document.querySelector('[data-view="search-result"]');
+
   if (data.list.viewing === true) {
     closeList();
   }
@@ -275,7 +276,12 @@ function viewList() {
     $searchResult.classList.add('hidden');
   }
   $main.appendChild(createList());
-  checkMovies();
+  var $emptyList = document.querySelector('#empty-list-error');
+  if (isListEmpty() === true) {
+    $emptyList.classList.remove('hidden');
+  } else {
+    $emptyList.classList.add('hidden');
+  }
 }
 
 function createList() {
@@ -341,11 +347,10 @@ function closeList() {
   data.list.viewing = false;
 }
 
-function checkMovies() {
-  var $emptyList = document.querySelector('#empty-list-error');
+function isListEmpty() {
+  var listEmpty = false;
   if (data.list.array.length === 0) {
-    $emptyList.classList.remove('hidden');
-  } else {
-    $emptyList.classList.add('hidden');
+    listEmpty = true;
   }
+  return listEmpty;
 }
