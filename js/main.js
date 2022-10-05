@@ -77,7 +77,7 @@ $homeForm.addEventListener('submit', function (event) {
 
 function getApi(keyword) {
   $loading.classList.remove('hidden');
-  data.searchResult = [];
+  data.searchData = [];
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://omdbapi.com/?apikey=e9abc53b&s=' + keyword);
   xhr.responseType = 'json';
@@ -89,10 +89,10 @@ function getApi(keyword) {
     }
     for (var i = 0; i < xhr.response.Search.length; i++) {
       if (xhr.response.Search[i].Poster !== 'N/A') {
-        data.searchResult.push(xhr.response.Search[i]);
+        data.searchData.push(xhr.response.Search[i]);
       }
     }
-    if (data.searchResult.length === 0) {
+    if (data.searchData.length === 0) {
       $main.appendChild(createImage(false));
       $loading.classList.add('hidden');
       return;
@@ -136,8 +136,8 @@ function createImage(value) {
   var row = document.createElement('div');
   row.setAttribute('class', 'row');
 
-  for (var i = 0; i < data.searchResult.length; i++) {
-    row.appendChild(createColumn(data.searchResult[i]));
+  for (var i = 0; i < data.searchData.length; i++) {
+    row.appendChild(createColumn(data.searchData[i]));
   }
   container.appendChild(row);
   return container;
@@ -159,9 +159,9 @@ $body.addEventListener('click', function (event) {
         }
       }
     } else {
-      for (var i = 0; i < data.searchResult.length; i++) {
-        if (data.searchResult[i].Poster === event.target.getAttribute('src')) {
-          data.movieView.currentlyViewing = (data.searchResult[i]);
+      for (var i = 0; i < data.searchData.length; i++) {
+        if (data.searchData[i].Poster === event.target.getAttribute('src')) {
+          data.movieView.currentlyViewing = (data.searchData[i]);
           checkList();
           getDetails(data.movieView.currentlyViewing.imdbID);
         }

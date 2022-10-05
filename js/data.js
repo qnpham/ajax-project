@@ -1,6 +1,6 @@
 /* exported data */
 var data = {
-  searchResult: [],
+  searchData: [],
   movieView: { currentlyViewing: null, info: null },
   search: '',
   list: {
