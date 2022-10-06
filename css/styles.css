@@ -60,6 +60,10 @@ span {
   font-weight: 300;
 }
 
+input::placeholder {
+  padding-left: 0.25rem;
+}
+
 .fa-magnifying-glass {
   color: white;
   right: 0.5rem;
