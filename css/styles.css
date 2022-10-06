@@ -115,7 +115,7 @@ input::placeholder {
 .fa-btn {
   position: relative;
   width: 0;
-  margin-left: 0;
+  margin-left: 0.25rem;
   background: none;
   border: none;
 }
@@ -145,7 +145,7 @@ input::placeholder {
 }
 
 #home-input {
-  width: 90%;
+  width: 85%;
 }
 
 header {
@@ -328,9 +328,17 @@ header .fa-magnifying-glass {
   }
 
   span,
-  .label,
-  p {
+  p,
+  .label {
     font-size: 1rem;
+  }
+
+  .fa-btn {
+    margin-left: 0;
+  }
+
+  #home-input {
+    width: 90%;
   }
 
   .modal-box {
