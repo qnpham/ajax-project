@@ -155,7 +155,7 @@ function createContainer(value) {
       row.appendChild(createColumn(data.searchData[i]));
     }
 
-  } else if (data.list.viewing === true) {
+  } else {
     container.setAttribute('data-view', 'list-page');
     var tempList = data.list.array;
     row.setAttribute('class', 'row');
