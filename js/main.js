@@ -97,7 +97,7 @@ function getApi(keyword) {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     if (xhr.response.Response === 'False') {
-      $main.appendChild(createImage(false));
+      $main.appendChild(createContainer(false));
       $loading.classList.add('hidden');
       return;
     }
@@ -107,53 +107,86 @@ function getApi(keyword) {
       }
     }
     if (data.searchData.length === 0) {
-      $main.appendChild(createImage(false));
+      $main.appendChild(createContainer(false));
       $loading.classList.add('hidden');
       return;
     }
     $loading.classList.add('hidden');
-    $main.appendChild(createImage());
+    $main.appendChild(createContainer());
   });
   xhr.addEventListener('error', function () {
-    $main.appendChild(createImage('networkError'));
+    $main.appendChild(createContainer('networkError'));
     $loading.classList.add('hidden');
 
   });
   xhr.send();
 }
 
-function createImage(value) {
+function createContainer(value) {
   var $searchResult = document.querySelector('[data-view="search-result"]');
-
-  if ($searchResult) {
-    $searchResult.remove();
-  }
-
   var container = document.createElement('div');
   container.setAttribute('class', 'container text-center');
-  container.setAttribute('data-view', 'search-result');
-
-  if (value === false) {
-    var p2 = document.createElement('p');
-    p2.textContent = 'No movies found, try again.';
-    p2.className = 'no-movies empty-search-error';
-    container.appendChild(p2);
-    return container;
-  } else if (value === 'networkError') {
-    p2 = document.createElement('p');
-    p2.textContent = 'Sorry there is a network error, try again later.';
-    p2.className = 'no-movies empty-search-error';
-    container.appendChild(p2);
-    return container;
-  }
 
   var row = document.createElement('div');
   row.setAttribute('class', 'row');
 
-  for (var i = 0; i < data.searchData.length; i++) {
-    row.appendChild(createColumn(data.searchData[i]));
+  if (data.list.viewing === false) {
+    if ($searchResult) {
+      $searchResult.remove();
+    }
+
+    container.setAttribute('data-view', 'search-result');
+
+    if (value === false) {
+      var p2 = document.createElement('p');
+      p2.textContent = 'No movies found, try again.';
+      p2.className = 'no-movies empty-search-error';
+      container.appendChild(p2);
+      return container;
+    } else if (value === 'networkError') {
+      p2 = document.createElement('p');
+      p2.textContent = 'Sorry there is a network error, try again later.';
+      p2.className = 'no-movies empty-search-error';
+      container.appendChild(p2);
+      return container;
+    }
+
+    for (var i = 0; i < data.searchData.length; i++) {
+      row.appendChild(createColumn(data.searchData[i]));
+    }
+
+  } else if (data.list.viewing === true) {
+    container.setAttribute('data-view', 'list-page');
+    var tempList = data.list.array;
+    row.setAttribute('class', 'row');
+
+    var columnOneFourth = document.createElement('div');
+    columnOneFourth.className = 'column-one-fourth list-close-container';
+    row.appendChild(columnOneFourth);
+
+    var close = document.createElement('i');
+    close.className = 'fa-solid fa-xmark';
+    close.setAttribute('id', 'list-close');
+    columnOneFourth.appendChild(close);
+
+    var row2 = document.createElement('div');
+    row2.className = 'row';
+
+    var p = document.createElement('p');
+    p.textContent = 'No movies added.';
+    p.className = 'no-movies hidden';
+    p.setAttribute('id', 'empty-list-error');
+    container.appendChild(p);
+
+    for (var z = 0; z < tempList.length; z++) {
+      row2.appendChild(createColumn(tempList[z]));
+    }
   }
+
   container.appendChild(row);
+  if (row2) {
+    container.appendChild(row2);
+  }
   return container;
 
 }
@@ -322,49 +355,13 @@ function viewList() {
   if ($searchResult) {
     $searchResult.classList.add('hidden');
   }
-  $main.appendChild(createList());
+  $main.appendChild(createContainer());
   var $emptyList = document.querySelector('#empty-list-error');
   if (isListEmpty() === true) {
     $emptyList.classList.remove('hidden');
   } else {
     $emptyList.classList.add('hidden');
   }
-}
-
-function createList() {
-  var tempList = data.list.array;
-  var container = document.createElement('div');
-  container.setAttribute('class', 'container text-center');
-  container.setAttribute('data-view', 'list-page');
-
-  var row = document.createElement('div');
-  row.setAttribute('class', 'row');
-
-  var columnOneFourth = document.createElement('div');
-  columnOneFourth.className = 'column-one-fourth list-close-container';
-  row.appendChild(columnOneFourth);
-
-  var close = document.createElement('i');
-  close.className = 'fa-solid fa-xmark';
-  close.setAttribute('id', 'list-close');
-  columnOneFourth.appendChild(close);
-
-  var row2 = document.createElement('div');
-  row2.className = 'row';
-
-  var p = document.createElement('p');
-  p.textContent = 'No movies added.';
-  p.className = 'no-movies hidden';
-  p.setAttribute('id', 'empty-list-error');
-  container.appendChild(p);
-
-  for (var i = 0; i < tempList.length; i++) {
-    row2.appendChild(createColumn(tempList[i]));
-  }
-
-  container.appendChild(row);
-  container.appendChild(row2);
-  return container;
 }
 
 function createColumn(movie) {
