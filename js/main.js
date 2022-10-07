@@ -82,10 +82,10 @@ $navForm.addEventListener('submit', function (event) {
 });
 
 $homeForm.addEventListener('submit', function (event) {
+  event.preventDefault();
   var $navInput = document.querySelector('#nav-input');
   var $homeInput = document.querySelector('#home-input');
   data.search = $homeInput.value;
-  event.preventDefault();
   $homePage.classList.add('hidden');
   $nav.classList.remove('hidden');
   $navForm.classList.remove('hidden');
@@ -103,7 +103,7 @@ function getApi(keyword) {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     if (xhr.response.Response === 'False') {
-      $main.appendChild(createContainer(false));
+      $main.appendChild(createSearchResult(false));
       $loading.classList.add('hidden');
       return;
     }
@@ -113,80 +113,88 @@ function getApi(keyword) {
       }
     }
     if (data.searchData.length === 0) {
-      $main.appendChild(createContainer(false));
+      $main.appendChild(createSearchResult(false));
       $loading.classList.add('hidden');
       return;
     }
     $loading.classList.add('hidden');
-    $main.appendChild(createContainer());
+    $main.appendChild(createSearchResult());
   });
   xhr.addEventListener('error', function () {
-    $main.appendChild(createContainer('networkError'));
+    $main.appendChild(createSearchResult('networkError'));
     $loading.classList.add('hidden');
 
   });
   xhr.send();
 }
 
-function createContainer(value) {
-  var $searchResult = document.querySelector('[data-view="search-result"]');
+function createSearchResult(value) {
+  var container = document.querySelector('[data-view="search-result"]');
+
+  var row = document.createElement('div');
+  row.setAttribute('class', 'row');
+  container.setAttribute('data-view', 'search-result');
+
+  if (value === false) {
+    var p2 = document.createElement('p');
+    p2.textContent = 'No movies found, try again.';
+    p2.className = 'no-movies empty-search-error';
+    container.appendChild(p2);
+    return container;
+  } else if (value === 'networkError') {
+    p2 = document.createElement('p');
+    p2.textContent = 'Sorry there is a network error, try again later.';
+    p2.className = 'no-movies empty-search-error';
+    container.appendChild(p2);
+    return container;
+  }
+
+  for (var i = 0; i < data.searchData.length; i++) {
+    row.appendChild(createColumn(data.searchData[i]));
+  }
+
+  container.appendChild(row);
+  return container;
+}
+
+function createList() {
+  // var $searchResult = document.querySelector('[data-view="search-result"]');
   var container = document.createElement('div');
   container.setAttribute('class', 'container text-center');
 
   var row = document.createElement('div');
   row.setAttribute('class', 'row');
 
-  if (data.list.viewing === false) {
-    if ($searchResult) {
-      $searchResult.remove();
-    }
+  // if (data.list.viewing === false) {
+  //   if ($searchResult) {
+  //     $searchResult.remove();
+  //   }
 
-    container.setAttribute('data-view', 'search-result');
+  // container.setAttribute('data-view', 'search-result');
+  container.setAttribute('data-view', 'list-page');
+  var tempList = data.list.array;
+  row.setAttribute('class', 'row');
 
-    if (value === false) {
-      var p2 = document.createElement('p');
-      p2.textContent = 'No movies found, try again.';
-      p2.className = 'no-movies empty-search-error';
-      container.appendChild(p2);
-      return container;
-    } else if (value === 'networkError') {
-      p2 = document.createElement('p');
-      p2.textContent = 'Sorry there is a network error, try again later.';
-      p2.className = 'no-movies empty-search-error';
-      container.appendChild(p2);
-      return container;
-    }
+  var columnOneFourth = document.createElement('div');
+  columnOneFourth.className = 'column-one-fourth list-close-container';
+  row.appendChild(columnOneFourth);
 
-    for (var i = 0; i < data.searchData.length; i++) {
-      row.appendChild(createColumn(data.searchData[i]));
-    }
+  var close = document.createElement('i');
+  close.className = 'fa-solid fa-xmark';
+  close.setAttribute('id', 'list-close');
+  columnOneFourth.appendChild(close);
 
-  } else {
-    container.setAttribute('data-view', 'list-page');
-    var tempList = data.list.array;
-    row.setAttribute('class', 'row');
+  var row2 = document.createElement('div');
+  row2.className = 'row';
 
-    var columnOneFourth = document.createElement('div');
-    columnOneFourth.className = 'column-one-fourth list-close-container';
-    row.appendChild(columnOneFourth);
+  var p = document.createElement('p');
+  p.textContent = 'No movies added.';
+  p.className = 'no-movies hidden';
+  p.setAttribute('id', 'empty-list-error');
+  container.appendChild(p);
 
-    var close = document.createElement('i');
-    close.className = 'fa-solid fa-xmark';
-    close.setAttribute('id', 'list-close');
-    columnOneFourth.appendChild(close);
-
-    var row2 = document.createElement('div');
-    row2.className = 'row';
-
-    var p = document.createElement('p');
-    p.textContent = 'No movies added.';
-    p.className = 'no-movies hidden';
-    p.setAttribute('id', 'empty-list-error');
-    container.appendChild(p);
-
-    for (var z = 0; z < tempList.length; z++) {
-      row2.appendChild(createColumn(tempList[z]));
-    }
+  for (var z = 0; z < tempList.length; z++) {
+    row2.appendChild(createColumn(tempList[z]));
   }
 
   container.appendChild(row);
@@ -194,8 +202,8 @@ function createContainer(value) {
     container.appendChild(row2);
   }
   return container;
-
 }
+
 $body.addEventListener('click', function (event) {
   var $listPage = document.querySelector('[data-view="list-page"]');
   if (event.target.matches('img')) {
@@ -366,7 +374,7 @@ function viewList() {
   if ($searchResult) {
     $searchResult.classList.add('hidden');
   }
-  $main.appendChild(createContainer());
+  $main.appendChild(createList());
   var $emptyList = document.querySelector('#empty-list-error');
   if (isListEmpty() === true) {
     $emptyList.classList.remove('hidden');
