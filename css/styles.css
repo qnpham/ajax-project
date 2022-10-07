@@ -321,9 +321,6 @@ header .fa-magnifying-glass {
 
 .icon-container {
   display: inline-block;
-
-  /* width: 2rem;
-  height: 5rem; */
 }
 
 @media only screen and (min-width: 768px) {
@@ -438,6 +435,10 @@ header .fa-magnifying-glass {
   .icon-container {
     width: 2rem;
     height: 2rem;
+  }
+
+  [data-view="movie-page"] {
+    margin-top: 2rem;
   }
 }
 
