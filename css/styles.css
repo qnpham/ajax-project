@@ -255,8 +255,9 @@ header .fa-magnifying-glass {
   content: "";
   opacity: 0.75;
   position: fixed;
+  top: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: black;
 }
 
