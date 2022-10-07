@@ -319,8 +319,10 @@ header .fa-magnifying-glass {
 }
 
 .icon-container {
-  width: 5px;
-  display: inline;
+  display: inline-block;
+
+  /* width: 2rem;
+  height: 5rem; */
 }
 
 @media only screen and (min-width: 768px) {
@@ -430,6 +432,11 @@ header .fa-magnifying-glass {
 
   #movie-director {
     display: inline;
+  }
+
+  .icon-container {
+    width: 2rem;
+    height: 2rem;
   }
 }
 

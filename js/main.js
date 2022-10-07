@@ -29,9 +29,15 @@ $yes.addEventListener('click', function () {
   for (var i = 0; i < data.list.array.length; i++) {
     if (data.movieView.currentlyViewing.imdbID === data.list.array[i].imdbID) {
       data.list.array.splice(i, 1);
-      $moviePage.classList.add('hidden');
       $modal.classList.add('hidden');
-      viewList();
+
+      if (data.list.viewing === true) {
+        $moviePage.classList.add('hidden');
+        viewList();
+      } else {
+        $plus.classList.remove('hidden');
+        $minus.classList.add('hidden');
+      }
     }
   }
 });
@@ -206,12 +212,13 @@ $body.addEventListener('click', function (event) {
         }
       }
     } else {
+      $minus.classList.add('hidden');
       for (var i = 0; i < data.searchData.length; i++) {
         if (data.searchData[i].Poster === event.target.getAttribute('src')) {
           data.movieView.currentlyViewing = (data.searchData[i]);
           if (movieAdded() === true) {
             $plus.classList.add('hidden');
-            $check.classList.remove('hidden');
+            $minus.classList.remove('hidden');
           } else {
             $plus.classList.remove('hidden');
             $check.classList.add('hidden');
@@ -254,7 +261,7 @@ $close.addEventListener('click', function () {
     $list.classList.remove('hidden');
     if (movieAdded() === true) {
       $plus.classList.add('hidden');
-      $check.classList.remove('hidden');
+      $minus.classList.remove('hidden');
     } else {
       $plus.classList.remove('hidden');
       $check.classList.add('hidden');
@@ -310,6 +317,10 @@ $plus.addEventListener('click', function () {
   if (movieAdded() === true) {
     $plus.classList.add('hidden');
     $check.classList.remove('hidden');
+    setTimeout(function () {
+      $check.classList.add('hidden');
+      $minus.classList.remove('hidden');
+    }, 500);
   } else {
     $plus.classList.remove('hidden');
     $check.classList.add('hidden');
