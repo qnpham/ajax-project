@@ -1,6 +1,6 @@
 # MyMovieList
 
-A web application for movie enjoyers to keep a list of their movies.
+A web application for movie enjoyers to keep a list of their movies
 
 ## Why I Built This
 
