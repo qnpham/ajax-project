@@ -28,7 +28,7 @@ Try the application live at [quannampham.github.io/mymovielist/](quannampham.git
 
 ## Preview
 
-![Example](assets/example.mov)
+![Example](assets/example.gif)
 
 ## Development
 
