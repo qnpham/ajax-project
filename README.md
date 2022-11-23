@@ -30,7 +30,6 @@ Try the application live at [quannampham.github.io/mymovielist/](quannampham.git
 
 ![Example](assets/example.gif)
 
-## Development
 
 ### System Requirements
 
